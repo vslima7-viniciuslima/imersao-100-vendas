@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#E3E2DE">
+    <title>Imersão 100 Vendas Low Ticket por Mês com IA Claude — Vinícius Lima</title>
+    <meta name="description" content="2 Horas de Pura Prática. Aprenda como usar o Claude para criar ofertas de low ticket que vendem todos os dias. Dia 03 de Junho, 14h.">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <style>
+
+        /* ===== RESET ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ===== TOKENS ===== */
+        :root {
+            --bg:     #E3E2DE;
+            --blue:   #1351AA;
+            --black:  #141414;
+            --text:   #444343;
+            --muted:  #7A7A7A;
+            --border: #C7C7C7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'General Sans', 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--black);
+            line-height: 1.5;
+            overflow-x: hidden;
+            /* espaço para a barra CTA fixa no mobile */
+            padding-bottom: 0;
+        }
+
+        /* ===== UTILITIES ===== */
+        .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            display: block;
+            line-height: 1.4;
+        }
+        .label--light { color: rgba(199,199,199,0.4); }
+        .accent-blue  { color: var(--blue); }
+
+        /* ===== GRID ===== */
+        .grid-wrap {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+        }
+        .col-sidebar {
+            grid-column: 1 / 4;
+            border-right: 1px solid var(--border);
+            padding-right: 24px;
+        }
+        .col-content {
+            grid-column: 4 / 13;
+            padding-left: 24px;
+        }
+        .sticky-label { position: sticky; top: 112px; }
+
+        /* ===== SECTIONS ===== */
+        .section       { border-top: 1px solid var(--border); padding: 96px 0; }
+        .section--tight { border-top: 1px solid var(--border); padding: 64px 0; }
+
+        .full-wrap {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'General Sans', 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 16px 32px;
+            transition: background-color 0.3s linear, color 0.3s linear;
+            /* tap target mínimo recomendado */
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn--blue  { background: var(--blue);  color: var(--bg); }
+        .btn--blue:hover  { background: var(--black); }
+        .btn--black { background: var(--black); color: var(--bg); }
+        .btn--black:hover { background: var(--blue); }
+        .btn--cream { background: var(--bg);    color: var(--black); }
+        .btn--cream:hover { background: var(--blue); color: var(--bg); }
+        .btn--big   { padding: 20px 40px; font-size: 0.875rem; }
+
+        .btn-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-color: var(--border);
+            transition: color 0.3s linear, text-decoration-color 0.3s linear;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-text:hover { color: var(--blue); text-decoration-color: var(--blue); }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 80px;
+            background: rgba(227,226,222,0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+            align-items: center;
+        }
+        .nav__logo {
+            grid-column: 1 / 4;
+            font-size: 0.875rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--black);
+            text-decoration: none;
+        }
+        .nav__links {
+            grid-column: 10 / 13;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 28px;
+        }
+        .nav__links a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            transition: color 0.3s linear;
+        }
+        .nav__links a:hover { color: var(--blue); }
+        .nav__cta {
+            background: var(--blue) !important;
+            color: var(--bg) !important;
+            padding: 10px 20px !important;
+            font-size: 0.7rem !important;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            text-decoration: none;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.3s linear !important;
+        }
+        .nav__cta:hover { background: var(--black) !important; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 85svh;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            min-height: 85svh;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+        }
+        .hero__sidebar {
+            grid-column: 1 / 4;
+            border-right: 1px solid var(--border);
+            padding: 72px 24px 72px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .hero__icon { width: 16px; height: 16px; background: var(--black); flex-shrink: 0; }
+        .hero__content {
+            grid-column: 4 / 13;
+            padding: 72px 0 72px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hero__date {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+        .hero__headline {
+            font-size: clamp(2.8rem, 7vw, 9rem);
+            font-weight: 900;
+            line-height: 0.87;
+            letter-spacing: -0.04em;
+            color: var(--black);
+        }
+        .hero__bottom {
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: end;
+        }
+        .hero__sub {
+            font-size: 1.1rem;
+            color: var(--text);
+            line-height: 1.65;
+        }
+        .hero__sub strong { color: var(--black); font-weight: 700; }
+        .hero__entregavel {
+            font-size: 0.925rem;
+            color: var(--muted);
+            margin-top: 14px;
+            line-height: 1.6;
+        }
+        .hero__cta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        /* ===== CARTA ===== */
+        .carta-p {
+            font-size: 1.2rem;
+            color: var(--text);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        .carta-p strong { color: var(--black); font-weight: 700; }
+        .carta-p--bold {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.45;
+            margin-bottom: 16px;
+        }
+        .carta-destaque {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 0.92;
+            color: var(--blue);
+            margin: 36px 0;
+        }
+        .carta-quote {
+            border-left: 4px solid var(--blue);
+            padding: 20px 28px;
+            margin: 28px 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--blue);
+            font-style: italic;
+            line-height: 1.45;
+        }
+
+        /* ===== LISTA "VOCÊ VAI APRENDER" ===== */
+        .aprende-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+        }
+        .aprende-item:last-child { border-bottom: 1px solid var(--border); }
+        .aprende-item__idx {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            padding-top: 7px;
+            flex-shrink: 0;
+            min-width: 36px;
+        }
+        .aprende-item__title {
+            font-size: clamp(1.25rem, 2.5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            transition: color 0.3s linear;
+        }
+        .aprende-item:hover .aprende-item__title { color: var(--blue); }
+
+        /* ===== CALLOUT "E PRINCIPALMENTE" ===== */
+        .callout { background: var(--black); padding: 80px 0; }
+        .callout__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+        }
+        .callout__label {
+            grid-column: 1 / 4;
+            border-right: 1px solid rgba(199,199,199,0.15);
+            padding-right: 24px;
+            padding-top: 6px;
+        }
+        .callout__body {
+            grid-column: 4 / 13;
+            padding-left: 24px;
+        }
+        .callout__headline {
+            font-size: clamp(1.6rem, 4vw, 4.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--bg);
+        }
+        .callout__headline span { color: var(--blue); }
+
+        /* ===== "EM 2 HORAS" ===== */
+        .em2h-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
+        }
+        .em2h-cell { background: var(--bg); padding: 48px 40px; }
+        .em2h-cell__num {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 20px;
+        }
+        .em2h-cell__text {
+            font-size: 1.1rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .em2h-cell__text strong { color: var(--black); font-weight: 700; }
+
+        /* ===== ENTREGÁVEIS ===== */
+        .entrega-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+        }
+        .entrega-row:last-child { border-bottom: 1px solid var(--border); }
+        .entrega-check {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--blue);
+            flex-shrink: 0;
+            width: 24px;
+        }
+        .entrega-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ===== TRANSFORMAÇÃO ===== */
+        .transf__statement {
+            font-size: clamp(2rem, 4vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 0.92;
+            color: var(--black);
+            margin-bottom: 40px;
+        }
+        .transf__body p {
+            font-size: 1.2rem;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .transf__body p strong { color: var(--black); font-weight: 700; }
+        .transf__cta-line {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.55;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+        .transf__cta-line span { color: var(--blue); }
+
+        /* ===== RESUMO ===== */
+        .resumo { background: var(--black); padding: 80px 0; border-top: 1px solid var(--border); }
+        .resumo__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+        }
+        .resumo__sidebar {
+            grid-column: 1 / 4;
+            border-right: 1px solid rgba(199,199,199,0.15);
+            padding-right: 24px;
+        }
+        .resumo__content { grid-column: 4 / 13; padding-left: 24px; }
+        .resumo__title {
+            font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 0.92;
+            color: var(--bg);
+            margin-bottom: 40px;
+        }
+        .resumo__title span { color: var(--blue); }
+        .resumo__item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(199,199,199,0.12);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(227,226,222,0.75);
+            line-height: 1.4;
+        }
+        .resumo__item:last-child { border-bottom: 1px solid rgba(199,199,199,0.12); }
+        .resumo__item-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+
+        /* ===== PRICING ===== */
+        .pricing { background: var(--black); padding: 100px 0; }
+        .pricing__inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+        }
+        .pricing__sidebar {
+            grid-column: 1 / 4;
+            border-right: 1px solid rgba(199,199,199,0.15);
+            padding-right: 24px;
+        }
+        .pricing__content { grid-column: 4 / 13; padding-left: 24px; }
+        .pricing__headline {
+            font-size: clamp(3rem, 7vw, 8rem);
+            font-weight: 900;
+            line-height: 0.87;
+            letter-spacing: -0.04em;
+            color: var(--bg);
+            margin-bottom: 40px;
+        }
+        .pricing__sub {
+            font-size: 1.1rem;
+            color: rgba(199,199,199,0.55);
+            line-height: 1.65;
+            margin-bottom: 56px;
+        }
+        .pricing__sub strong { color: rgba(227,226,222,0.85); }
+        .pricing__bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 40px;
+            border-top: 1px solid rgba(199,199,199,0.12);
+            gap: 24px;
+        }
+        .pricing__price-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(199,199,199,0.35);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .pricing__price {
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 900;
+            color: var(--bg);
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        /* ===== CHECKLIST FINAL ===== */
+        .checklist-final { border-top: 1px solid var(--border); padding: 80px 0; }
+        .checklist-final__title {
+            font-size: clamp(1.4rem, 3vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--black);
+            margin-bottom: 48px;
+        }
+        .checklist-final__title span { color: var(--blue); }
+        .checklist-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 22px 0;
+            border-top: 1px solid var(--border);
+        }
+        .checklist-row:last-child { border-bottom: 1px solid var(--border); }
+        .checklist-row__check {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--bg);
+            background: var(--blue);
+            padding: 4px 10px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        .checklist-row__text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer p {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* ===== PARCELAMENTO ===== */
+        .pricing__installment {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .pricing__installment-main {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 900;
+            color: var(--bg);
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .pricing__installment-or {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(199,199,199,0.35);
+            margin: 6px 0;
+        }
+        .pricing__installment-alt {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(227,226,222,0.5);
+            letter-spacing: -0.01em;
+        }
+        .pricing__installment-alt strong {
+            color: rgba(227,226,222,0.75);
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+
+        /* --- Tablet (≤ 1024px) --- */
+        @media (max-width: 1024px) {
+            .nav__inner, .hero__inner, .grid-wrap,
+            .callout__inner, .resumo__inner, .pricing__inner,
+            .full-wrap { padding-left: 32px; padding-right: 32px; }
+        }
+
+        /* --- Mobile (≤ 768px) --- */
+        @media (max-width: 768px) {
+
+            body { padding-bottom: 0; }
+
+            /* Padding geral */
+            .nav__inner, .hero__inner, .grid-wrap,
+            .callout__inner, .resumo__inner, .pricing__inner,
+            .full-wrap {
+                padding-left: 20px;
+                padding-right: 20px;
+                column-gap: 0;
+            }
+
+            /* Seções */
+            .section       { padding: 56px 0; }
+            .section--tight { padding: 48px 0; }
+
+            /* NAV */
+            .nav__inner { grid-template-columns: 1fr auto; }
+            .nav__logo  { grid-column: 1/2; font-size: 0.8rem; }
+            .nav__links { grid-column: 2/3; gap: 0; }
+            .nav__links a:not(.nav__cta) { display: none; }
+            .nav__cta { padding: 9px 14px !important; font-size: 0.65rem !important; }
+
+            /* HERO */
+            .hero { min-height: auto; }
+            .hero__inner {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            .hero__sidebar {
+                grid-column: 1/-1;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                flex-direction: row;
+                align-items: center;
+                padding: 16px 0;
+                gap: 12px;
+            }
+            .hero__icon { width: 12px; height: 12px; }
+            .hero__content {
+                grid-column: 1/-1;
+                padding: 36px 0 48px;
+            }
+            .hero__date { margin-bottom: 24px; }
+            .hero__headline { letter-spacing: -0.03em; }
+            .hero__bottom {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                margin-top: 36px;
+                padding-top: 28px;
+            }
+            .hero__sub { font-size: 1rem; }
+            .hero__entregavel { font-size: 0.875rem; }
+            .hero__cta { width: 100%; }
+            /* Botão CTA hero: full-width no mobile */
+            .hero__cta .btn {
+                width: 100%;
+                text-align: center;
+                font-size: 0.75rem;
+                padding: 16px 20px;
+            }
+
+            /* GRID SECTIONS */
+            .grid-wrap { grid-template-columns: 1fr; }
+            .col-sidebar {
+                grid-column: 1/-1;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 0 0 12px;
+                margin-bottom: 4px;
+            }
+            .col-sidebar .sticky-label { position: static; }
+            .col-content { grid-column: 1/-1; padding-left: 0; }
+
+            /* CARTA */
+            .carta-p      { font-size: 1.05rem; }
+            .carta-p--bold { font-size: 1.15rem; }
+            .carta-quote  { font-size: 1.1rem; padding: 16px 20px; }
+            .carta-destaque { margin: 24px 0; }
+
+            /* LISTA APRENDER */
+            .aprende-item { gap: 16px; padding: 20px 0; }
+            .aprende-item__idx { min-width: 28px; }
+
+            /* CALLOUT */
+            .callout { padding: 56px 0; }
+            .callout__inner { grid-template-columns: 1fr; }
+            .callout__label {
+                grid-column: 1/-1;
+                border-right: none;
+                border-bottom: 1px solid rgba(199,199,199,0.15);
+                padding: 0 0 12px;
+                margin-bottom: 4px;
+            }
+            .callout__body { grid-column: 1/-1; padding-left: 0; padding-top: 20px; }
+
+            /* EM 2 HORAS */
+            .em2h-grid { grid-template-columns: 1fr; margin-top: 32px; }
+            .em2h-cell { padding: 32px 24px; }
+            .em2h-cell__text { font-size: 1rem; }
+
+            /* ENTREGÁVEIS */
+            .entrega-text { font-size: 1.05rem; }
+
+            /* TRANSFORMAÇÃO */
+            .transf__cta-line { font-size: 1.05rem; }
+
+            /* RESUMO */
+            .resumo { padding: 56px 0; }
+            .resumo__inner { grid-template-columns: 1fr; }
+            .resumo__sidebar {
+                grid-column: 1/-1;
+                border-right: none;
+                border-bottom: 1px solid rgba(199,199,199,0.15);
+                padding: 0 0 12px;
+                margin-bottom: 4px;
+            }
+            .resumo__content { grid-column: 1/-1; padding-left: 0; padding-top: 20px; }
+            .resumo__item { font-size: 1rem; }
+
+            /* PRICING */
+            .pricing { padding: 56px 0; }
+            .pricing__inner { grid-template-columns: 1fr; }
+            .pricing__sidebar {
+                grid-column: 1/-1;
+                border-right: none;
+                border-bottom: 1px solid rgba(199,199,199,0.15);
+                padding: 0 0 12px;
+                margin-bottom: 4px;
+            }
+            .pricing__content { grid-column: 1/-1; padding-left: 0; padding-top: 20px; }
+            .pricing__sub { margin-bottom: 36px; font-size: 1rem; }
+            .pricing__bottom {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 24px;
+            }
+            /* Botão de compra: full-width no mobile */
+            .pricing__bottom .btn {
+                width: 100%;
+                text-align: center;
+                font-size: 0.75rem;
+                padding: 18px 20px;
+            }
+
+            /* CHECKLIST */
+            .checklist-final { padding: 56px 0; }
+            .checklist-row__text { font-size: 0.95rem; }
+
+            /* FOOTER */
+            .footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 24px 20px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav">
+    <div class="nav__inner">
+        <a href="#" class="nav__logo">Vinícius Lima</a>
+        <div class="nav__links">
+            <a href="#aprender">Conteúdo</a>
+            <a href="https://pay.kiwify.com.br/1JSOhFd" target="_blank" rel="noopener" class="nav__cta">Garantir Vaga</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== SEÇÃO 1: HERO ==================== -->
+<section class="hero">
+    <div class="hero__inner">
+        <div class="hero__sidebar">
+            <div class="hero__icon"></div>
+            <span class="label">Imersão</span>
+        </div>
+        <div class="hero__content">
+            <div>
+                <p class="hero__date">Dia 03 de Junho &mdash; 14h</p>
+                <h1 class="hero__headline">
+                    Imersão <span class="accent-blue">100 Vendas</span><br>
+                    Low Ticket por Mês<br>
+                    com IA Claude
+                </h1>
+            </div>
+            <div class="hero__bottom">
+                <div>
+                    <p class="hero__sub">
+                        100 Vendas por Mês de <strong>LOW TICKET</strong>, Mini-Curso usando IA CLAUDE. Os Modelos de Oferta Direta + Geradores de Caixa Rápido para Vender <strong>TODOS</strong> os Dias.
+                    </p>
+                    <p class="hero__entregavel">
+                        2 Horas de PURA PRÁTICA, gravação com acesso vitalício + Pacote de PROMPTS e AGENTES. Eu vou te entregar o TREINO COMPLETO para gerar 100 vendas por mês com o CLAUDE.
+                    </p>
+                </div>
+                <div class="hero__cta">
+                    <a href="https://pay.kiwify.com.br/1JSOhFd" target="_blank" rel="noopener" class="btn btn--blue">
+                        Clique Aqui Para Garantir a Sua Vaga com Pacote de Bônus
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO 2: CARTA DE VENDAS ==================== -->
+<section class="section" id="carta">
+    <div class="grid-wrap">
+        <div class="col-sidebar">
+            <div class="sticky-label">
+                <span class="label">Carta</span>
+            </div>
+        </div>
+        <div class="col-content">
+            <div style="max-width: 680px;">
+                <p class="carta-p">Eu não sei quantas vendas você fez nos últimos 7 dias.</p>
+                <p class="carta-p">Mas o que te separa de gerar <strong>100, 300, 500 ou até 1.000 vendas em um mês</strong> pode estar em aprender uma coisa simples:</p>
+                <p class="carta-destaque">Ofertas diretas<br>de low ticket.</p>
+                <p class="carta-p">Não é sobre criar um curso gigante.</p>
+                <p class="carta-p">Não é sobre ter muitos seguidores no Instagram.</p>
+                <p class="carta-p">Não é sobre passar meses planejando.</p>
+                <p class="carta-p--bold">É sobre saber encontrar uma dor forte, transformar isso em uma promessa simples e criar uma oferta que a pessoa olha e pensa:</p>
+                <blockquote class="carta-quote">
+                    "Por esse valor, eu vou comprar agora."
+                </blockquote>
+                <p class="carta-p">Nessa imersão prática, você vai aprender como usar a Inteligência Artificial — o Claude — para criar ofertas de low ticket, cursos ou mini-cursos que podem vender todos os dias.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== "VOCÊ VAI APRENDER A:" ==================== -->
+<section class="section--tight" id="aprender">
+    <div class="grid-wrap">
+        <div class="col-sidebar">
+            <div class="sticky-label">
+                <span class="label">Você vai<br>aprender a</span>
+            </div>
+        </div>
+        <div class="col-content">
+            <div class="aprende-item">
+                <span class="aprende-item__idx">01</span>
+                <span class="aprende-item__title">Pesquisar temas fortes.</span>
+            </div>
+            <div class="aprende-item">
+                <span class="aprende-item__idx">02</span>
+                <span class="aprende-item__title">Encontrar dores que já têm demanda.</span>
+            </div>
+            <div class="aprende-item">
+                <span class="aprende-item__idx">03</span>
+                <span class="aprende-item__title">Criar promessas simples e desejadas.</span>
+            </div>
+            <div class="aprende-item">
+                <span class="aprende-item__idx">04</span>
+                <span class="aprende-item__title">Montar ofertas irresistíveis.</span>
+            </div>
+            <div class="aprende-item">
+                <span class="aprende-item__idx">05</span>
+                <span class="aprende-item__title">Criar produtos rápidos de vender.</span>
+            </div>
+            <div class="aprende-item">
+                <span class="aprende-item__idx">06</span>
+                <span class="aprende-item__title">Escrever páginas, anúncios e mensagens de WhatsApp.</span>
+            </div>
+            <div class="aprende-item">
+                <span class="aprende-item__idx">07</span>
+                <span class="aprende-item__title">Ativar funis de caixa rápido.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== "E PRINCIPALMENTE:" ==================== -->
+<div class="callout">
+    <div class="callout__inner">
+        <div class="callout__label">
+            <span class="label label--light">E principalmente</span>
+        </div>
+        <div class="callout__body">
+            <h2 class="callout__headline">
+                Dominar os principais<br>
+                <span>Modelos de Oferta Direta</span><br>
+                para transformar ideias simples<br>
+                em produtos que vendem.
+            </h2>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== "EM 2 HORAS DE PURA PRÁTICA" ==================== -->
+<section class="section" id="pratica">
+    <div class="grid-wrap">
+        <div class="col-sidebar">
+            <div class="sticky-label">
+                <span class="label">A entrega</span>
+            </div>
+        </div>
+        <div class="col-content">
+            <h2 style="font-size: clamp(1.8rem, 4vw, 4.5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 0.92; color: var(--black);">
+                Em 2 horas de<br>pura prática
+            </h2>
+            <div class="em2h-grid">
+                <div class="em2h-cell">
+                    <span class="em2h-cell__num">01 / O que acontece</span>
+                    <p class="em2h-cell__text">Eu vou te mostrar como usar o Claude para <strong>criar uma oferta completa do zero.</strong></p>
+                </div>
+                <div class="em2h-cell">
+                    <span class="em2h-cell__num">02 / O que você vê</span>
+                    <p class="em2h-cell__text">Você vai ver como sair de uma ideia comum e transformar isso em um produto de entrada com <strong>nome, promessa, bônus, copy, funil e estrutura de vendas.</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== "E AINDA VAI RECEBER:" ==================== -->
+<section class="section--tight" id="entregaveis">
+    <div class="grid-wrap">
+        <div class="col-sidebar">
+            <div class="sticky-label">
+                <span class="label">E ainda vai<br>receber</span>
+            </div>
+        </div>
+        <div class="col-content">
+            <div class="entrega-row">
+                <span class="entrega-check">✓</span>
+                <span class="entrega-text">Gravação com acesso vitalício.</span>
+            </div>
+            <div class="entrega-row">
+                <span class="entrega-check">✓</span>
+                <span class="entrega-text">Pacote de prompts prontos.</span>
+            </div>
+            <div class="entrega-row">
+                <span class="entrega-check">✓</span>
+                <span class="entrega-text">Pacote de agentes para Claude.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TRANSFORMAÇÃO ==================== -->
+<section class="section" id="transformacao">
+    <div class="grid-wrap">
+        <div class="col-sidebar">
+            <div class="sticky-label">
+                <span class="label">A ideia<br>é simples</span>
+            </div>
+        </div>
+        <div class="col-content">
+            <div style="max-width: 680px;">
+                <p class="transf__statement">
+                    Você entra sem<br>uma oferta clara.
+                </p>
+                <div class="transf__body">
+                    <p>E <strong>sai com um modelo pronto</strong> para criar produtos baratos, desejados e fáceis de vender.</p>
+                </div>
+                <p class="transf__cta-line">
+                    Se você quer parar de usar IA apenas para criar texto e começar a usar IA para <span>criar vendas</span>, essa aula é para você.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== RESUMO DO PRODUTO ==================== -->
+<div class="resumo">
+    <div class="resumo__inner">
+        <div class="resumo__sidebar">
+            <span class="label label--light" style="padding-top: 6px;">O produto</span>
+        </div>
+        <div class="resumo__content">
+            <h2 class="resumo__title">
+                100 Vendas por Mês de<br>
+                <span>Low Ticket</span> com Claude
+            </h2>
+            <div class="resumo__item">
+                <span class="resumo__item-dot"></span>
+                Os principais Modelos de Oferta Direta para Vender Todos os Dias
+            </div>
+            <div class="resumo__item">
+                <span class="resumo__item-dot"></span>
+                Oferta LOW TICKET
+            </div>
+            <div class="resumo__item">
+                <span class="resumo__item-dot"></span>
+                Oferta MINI-CURSO
+            </div>
+            <div class="resumo__item">
+                <span class="resumo__item-dot"></span>
+                E mais, muito mais...
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CTA / PRICING ==================== -->
+<section class="pricing" id="acesso">
+    <div class="pricing__inner">
+        <div class="pricing__sidebar">
+            <span class="label label--light">Acesso</span>
+        </div>
+        <div class="pricing__content">
+            <h2 class="pricing__headline">
+                Garanta<br>Sua Vaga
+            </h2>
+            <p class="pricing__sub">
+                Imersão ao vivo — <strong>Dia 03 de Junho, 14h.</strong><br>
+                Gravação + Pacote de Bônus inclusos no acesso.
+            </p>
+            <div class="pricing__bottom">
+                <div class="pricing__installment">
+                    <span class="pricing__price-label">Por apenas</span>
+                    <p class="pricing__installment-main">R$ 67</p>
+                    <span class="pricing__installment-or">ou</span>
+                    <p class="pricing__installment-alt"><strong>6x de R$12,57</strong> no cartão</p>
+                </div>
+                <a href="https://pay.kiwify.com.br/1JSOhFd" target="_blank" rel="noopener" class="btn btn--cream btn--big">
+                    Clique Aqui Para Garantir a Sua Vaga com Pacote de Bônus
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CHECKLIST FINAL ==================== -->
+<section class="checklist-final">
+    <div class="full-wrap">
+        <h2 class="checklist-final__title">
+            Imersão 100 Vendas por Mês<br>
+            Low Ticket com Claude<br>
+            <span>+ 12 Geradores de Caixa Rápido</span>
+        </h2>
+        <div class="checklist-row">
+            <span class="checklist-row__check">✓</span>
+            <span class="checklist-row__text">2H de Entrega Prática</span>
+        </div>
+        <div class="checklist-row">
+            <span class="checklist-row__check">✓</span>
+            <span class="checklist-row__text">Gravação com Acesso Vitalício</span>
+        </div>
+        <div class="checklist-row">
+            <span class="checklist-row__check">✓</span>
+            <span class="checklist-row__text">Pacote de Bônus</span>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <p>© 2026 Vinícius Lima — Todos os direitos reservados.</p>
+    <p>Imersão 100 Vendas Low Ticket por Mês com IA Claude</p>
+</footer>
+
+</body>
+</html>
