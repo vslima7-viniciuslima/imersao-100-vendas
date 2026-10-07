@@ -198,6 +198,19 @@
     .opt input:checked + label::before { border-color: var(--ok); background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 6.8' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
     .opt input:focus-visible + label { outline: 3px solid var(--brand); outline-offset: 3px; }
 
+    /* envio das respostas */
+    .send { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px 26px; margin: 22px 0 18px; max-width: var(--read); display: grid; gap: 8px; }
+    .send h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; }
+    .send-help { color: var(--ink-2); font-size: .95rem; margin-bottom: 6px; }
+    .send-label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-top: 8px; }
+    .send-input { width: 100%; font: 400 1rem var(--sans); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--r-sm); padding: 12px 14px; min-height: 48px; }
+    textarea.send-input { font-size: .92rem; line-height: 1.55; resize: vertical; }
+    .send-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px; }
+    .btn.solid { background: var(--ok); color: #fff; border-color: var(--ok); font-weight: 700; padding: 10px 20px; }
+    .btn.solid:hover { background: var(--ok); filter: brightness(1.1); }
+    .send-status { font-size: .9rem; color: var(--ink-2); }
+    .send-status.err { color: #9A3B2A; }
+
     /* resumo */
     .grid-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; margin-bottom: 26px; }
     .grid-sum div { background: var(--card); padding: 16px 20px; }
@@ -257,7 +270,7 @@
       html, body { background: #fff; }
       body { font-size: 10.5pt; line-height: 1.55; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .sidebar, .m-nav, .top, .tools, .btn { display: none !important; }
+      .sidebar, .m-nav, .top, .tools, .btn, .send { display: none !important; }
       .layout { display: block; }
       .wrap { max-width: none; padding: 0; }
       .cover { padding: 8mm 0 8mm; }
@@ -990,6 +1003,20 @@
             <p class="ref">A definir com Talitha/equipe.</p>
           </div>
 
+          <div class="send" id="envio">
+            <h3>Enviar as respostas para o grupo</h3>
+            <p class="send-help">Marque as opções acima, escreva seu nome e toque em enviar. O WhatsApp abre com a mensagem pronta, e você escolhe o grupo.</p>
+            <label class="send-label" for="nome">Seu nome</label>
+            <input class="send-input" id="nome" name="nome" type="text" autocomplete="name" placeholder="Quem está respondendo">
+            <label class="send-label" for="previa">Mensagem que será enviada</label>
+            <textarea class="send-input" id="previa" rows="9" readonly></textarea>
+            <div class="send-actions">
+              <button type="button" class="btn solid" id="enviar-wa">Enviar no WhatsApp</button>
+              <button type="button" class="btn" id="copiar">Copiar mensagem</button>
+              <span class="send-status" id="send-status" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+
           <button type="button" class="btn" id="limpar" style="margin-top: 6px">Limpar seleções</button>
         </form>
       </div>
@@ -1086,10 +1113,61 @@
       try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
     });
   });
+  // Envio das respostas para o grupo do WhatsApp
+  var nome = document.getElementById('nome');
+  var previa = document.getElementById('previa');
+  var statusEl = document.getElementById('send-status');
+  try { nome.value = localStorage.getItem('briefing-una-nome') || ''; } catch (e) {}
+
+  function pick(name) {
+    var r = form.querySelector('input[name=' + name + ']:checked');
+    return r ? r.value : 'sem resposta';
+  }
+  function montarMensagem() {
+    var quem = nome.value.trim() || '(nome não informado)';
+    return [
+      'Briefing de Lançamento · Formação UNA',
+      'Respostas de ' + quem,
+      '',
+      '1. Rota de nome: ' + pick('d1'),
+      '2. Promessa: ' + pick('d2'),
+      '3. Resultado tangível: ' + pick('d3'),
+      '4. Mecanismo: ' + pick('d4'),
+      '5. Experiência VIP: ' + pick('d5'),
+      '6. Horário do Workshop: a definir com Talitha/equipe',
+      '',
+      'Página: ' + location.href.split('#')[0]
+    ].join('\n');
+  }
+  function atualizar() { previa.value = montarMensagem(); }
+  function aviso(txt, erro) { statusEl.textContent = txt; statusEl.className = 'send-status' + (erro ? ' err' : ''); }
+
+  form.addEventListener('change', atualizar);
+  nome.addEventListener('input', function () {
+    atualizar();
+    try { localStorage.setItem('briefing-una-nome', nome.value); } catch (e) {}
+  });
+  atualizar();
+
+  document.getElementById('enviar-wa').addEventListener('click', function () {
+    if (!nome.value.trim()) { aviso('Escreva seu nome antes de enviar.', true); nome.focus(); return; }
+    aviso('');
+    window.open('https://wa.me/?text=' + encodeURIComponent(montarMensagem()), '_blank');
+  });
+  document.getElementById('copiar').addEventListener('click', function () {
+    if (!nome.value.trim()) { aviso('Escreva seu nome antes de copiar.', true); nome.focus(); return; }
+    var txt = montarMensagem();
+    function fallback() { previa.select(); aviso('Selecionei a mensagem. Copie e cole no grupo.'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { aviso('Mensagem copiada. Cole no grupo.'); }, fallback);
+    } else { fallback(); }
+  });
+
   document.getElementById('limpar').addEventListener('click', function () {
     form.querySelectorAll('input[type=radio]').forEach(function (r) { r.checked = false; });
     saved = {};
     try { localStorage.removeItem(KEY); } catch (e) {}
+    atualizar();
   });
 </script>
 </body>
