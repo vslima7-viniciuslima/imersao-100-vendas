@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Briefing de Lançamento</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════ TOKENS ══════════ */
+    :root {
+      --bg: #F7F6F2;
+      --card: #FFFFFF;
+      --ink: #1E1E1C;
+      --ink-2: #686760;
+      --brand: #6D503D;
+      --brand-soft: #EEE7DF;
+      --line: #E5E1DA;
+      --ok: #506B59;
+      --ok-soft: #E4ECE6;
+
+      --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --sans: 'DM Sans', 'Trebuchet MS', Arial, sans-serif;
+
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 20px;
+      --side: 272px;
+      --read: 800px;
+      --wide: 1080px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { font-family: var(--sans); font-size: 17px; line-height: 1.7; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    ul, ol { list-style: none; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+    p { max-width: 70ch; }
+    p + p { margin-top: 0.9rem; }
+
+    /* ══════════ LAYOUT ══════════ */
+    .layout { display: grid; grid-template-columns: var(--side) minmax(0, 1fr); max-width: 1440px; margin: 0 auto; }
+    .sidebar { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; padding: 36px 20px 28px 28px; border-right: 1px solid var(--line); scrollbar-width: thin; }
+    .sidebar .mark { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--brand); margin-bottom: 4px; }
+    .sidebar .mark-sub { font-size: .78rem; color: var(--ink-2); margin-bottom: 22px; line-height: 1.4; }
+    .toc li a { display: grid; grid-template-columns: 26px 1fr; gap: 6px; text-decoration: none; font-size: .76rem; line-height: 1.35; padding: 6px 8px; margin: 0 -8px; border-radius: var(--r-sm); color: var(--ink-2); letter-spacing: .01em; transition: background .2s, color .2s; }
+    .toc li a span:first-child { font-variant-numeric: tabular-nums; color: var(--brand); font-weight: 700; }
+    .toc li a:hover { background: var(--brand-soft); color: var(--ink); }
+    .toc li a.active { background: var(--brand-soft); color: var(--ink); font-weight: 700; }
+    .tools { display: flex; gap: 8px; margin-top: 22px; flex-wrap: wrap; }
+    .btn { font: 500 .8rem var(--sans); color: var(--brand); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; transition: background .2s, border-color .2s; }
+    .btn:hover { background: var(--brand-soft); border-color: var(--brand); }
+
+    .m-nav { display: none; }
+    main { min-width: 0; }
+    .wrap { max-width: var(--wide); margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+    .read { max-width: var(--read); }
+
+    /* ══════════ COVER ══════════ */
+    .cover { padding: clamp(56px, 9vw, 112px) 0 clamp(40px, 6vw, 72px); border-bottom: 1px solid var(--line); }
+    .cover .kicker { font-size: .78rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--brand); }
+    .cover h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 500; letter-spacing: -0.03em; margin: 22px 0 6px; line-height: .98; }
+    .cover .month { font-family: var(--serif); font-style: italic; font-size: clamp(1.6rem, 3.6vw, 2.6rem); color: var(--brand); }
+    .cover .who { margin-top: 28px; font-size: 1.15rem; font-weight: 500; }
+    .cover .ver { margin-top: 4px; font-size: .9rem; color: var(--ink-2); }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    .chip { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); }
+    .chip.hl { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+    .glance { padding-top: 40px; padding-bottom: 8px; }
+    .glance h2 { font-family: var(--sans); font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 14px; }
+    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+    .fact { background: var(--card); padding: 16px 18px; }
+    .fact small { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+    .fact strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin-top: 2px; line-height: 1.25; }
+
+    /* ══════════ SECTIONS ══════════ */
+    .sec { padding: clamp(44px, 6vw, 72px) 0; border-bottom: 1px solid var(--line); }
+    .sec.tint { background: color-mix(in srgb, var(--brand-soft) 55%, var(--bg)); }
+    .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 28px; max-width: var(--read); }
+    .sec-num { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--brand); font-variant-numeric: tabular-nums; border-bottom: 2px solid var(--brand); padding-bottom: 2px; flex: none; }
+    .sec-head h2 { font-size: clamp(1.2rem, 2.2vw, 1.6rem); letter-spacing: .03em; font-weight: 500; }
+    .badge { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent); vertical-align: middle; white-space: nowrap; }
+    .badge.ok { background: var(--ok-soft); color: var(--ok); border-color: color-mix(in srgb, var(--ok) 30%, transparent); }
+    .sec-head .badge { margin-left: auto; }
+
+    .h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; margin: 34px 0 8px; }
+    .h3:first-child { margin-top: 0; }
+    .label { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin: 30px 0 8px; }
+    .label:first-child { margin-top: 0; }
+
+    .quote { font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.4; border-left: 3px solid var(--brand); padding: 2px 0 2px 22px; margin: 18px 0; max-width: 54ch; }
+    .callout { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(24px, 4vw, 40px); margin: 22px 0; }
+    .callout.brand { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .callout .cap { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--brand); margin-bottom: 12px; }
+    .callout.brand .cap { color: #EBD9C8; }
+    .callout .serif { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.3; max-width: 36ch; }
+    .thesis { font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.02; letter-spacing: -0.025em; color: var(--brand); margin: 18px 0; }
+    .list { margin: 8px 0; }
+    .list li { position: relative; padding: 4px 0 4px 22px; max-width: 70ch; }
+    .list li::before { content: ''; position: absolute; left: 3px; top: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+    .stack p + p { margin-top: .35rem; }
+
+    .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 20px 0; }
+    .flow .st { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); font-size: .92rem; font-weight: 500; }
+    .flow .ar { color: var(--brand); font-weight: 700; }
+    .flow .st.end { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+    table.kv { width: 100%; max-width: var(--read); border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; font-size: .97rem; margin: 10px 0; }
+    .kv th, .kv td { text-align: left; padding: 12px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .kv th { width: 38%; font-weight: 500; color: var(--ink-2); background: color-mix(in srgb, var(--brand-soft) 45%, var(--card)); }
+    .kv tr:last-child th, .kv tr:last-child td { border-bottom: none; }
+    .kv tr.grp th { background: var(--brand); color: #fff; letter-spacing: .12em; text-transform: uppercase; font-size: .72rem; font-weight: 700; width: auto; }
+
+    /* mecanismo */
+    .mech { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 22px 0 28px; }
+    .mech .m { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 20px; position: relative; }
+    .mech .m .n { font-family: var(--serif); font-size: 1.9rem; color: var(--brand); line-height: 1; }
+    .mech .m h3 { font-family: var(--sans); font-size: .85rem; letter-spacing: .14em; font-weight: 700; margin: 10px 0 10px; }
+    .mech .m .qq { font-family: var(--serif); font-style: italic; font-size: 1.1rem; line-height: 1.35; margin-bottom: 10px; }
+    .mech .m p { font-size: .94rem; color: var(--ink-2); }
+    .mech .m:not(:last-child)::after { content: '→'; position: absolute; right: -13px; top: 22px; width: 24px; height: 24px; display: grid; place-items: center; background: var(--bg); color: var(--brand); font-weight: 700; z-index: 1; }
+
+    /* rotas */
+    .rota { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--brand); border-radius: var(--r-lg); padding: clamp(24px, 4vw, 44px); max-width: 900px; }
+    .rota .tag { font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--brand); }
+    .rota .name { font-family: var(--serif); font-weight: 500; font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.05; margin: 10px 0 6px; letter-spacing: -0.02em; }
+    .rota .desc { color: var(--ink-2); font-size: .98rem; margin-bottom: 8px; }
+    .rota .label { margin-top: 26px; }
+
+    table.cmp { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+    .cmp th, .cmp td { text-align: left; padding: 18px 22px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .cmp thead th { background: var(--brand); color: #fff; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; }
+    .cmp tbody th { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
+    .cmp td.p { font-family: var(--serif); font-style: italic; font-size: 1.1rem; }
+    .cmp tr:last-child td, .cmp tr:last-child th { border-bottom: none; }
+
+    /* ingresso / vip */
+    .tk { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(24px, 4vw, 40px); max-width: 900px; }
+    .tk .price { font-family: var(--serif); font-size: clamp(3.4rem, 8vw, 5.2rem); line-height: .9; color: var(--brand); letter-spacing: -0.03em; }
+    .vip-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; max-width: 900px; }
+    .vip-split > div { border-radius: var(--r-md); padding: 22px 24px; border: 1px solid var(--line); background: var(--card); }
+    .vip-split .is { border-color: color-mix(in srgb, var(--ok) 40%, var(--line)); background: var(--ok-soft); }
+    .vip-split h3 { font-family: var(--sans); font-size: .76rem; letter-spacing: .16em; font-weight: 700; margin-bottom: 10px; }
+    .vip-split .is h3 { color: var(--ok); }
+    .vip-split .not h3 { color: var(--brand); }
+    .vip-split li { padding: 4px 0 4px 22px; position: relative; font-size: .97rem; }
+    .vip-split .is li::before { content: '✓'; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
+    .vip-split .not li::before { content: '✕'; position: absolute; left: 0; color: var(--brand); font-weight: 700; }
+    .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; max-width: 900px; margin: 22px 0; }
+    .prices div { background: var(--card); padding: 18px 22px; }
+    .prices strong { display: block; font-family: var(--serif); font-size: 2rem; font-weight: 500; line-height: 1.1; color: var(--brand); }
+    .prices span { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
+    .prices .tot { background: var(--brand-soft); }
+
+    .band { background: var(--brand); color: #fff; border-radius: var(--r-lg); padding: clamp(28px, 5vw, 56px); margin: 6px 0 26px; max-width: 900px; }
+    .band .cap { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: #EBD9C8; font-weight: 700; }
+    .band .t { font-family: var(--serif); font-size: clamp(2.2rem, 5.5vw, 3.8rem); line-height: 1.02; letter-spacing: -0.02em; margin: 8px 0 4px; }
+    .band .p { font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1; color: #F4E8DB; }
+    .band .s { color: #EBD9C8; margin-top: 6px; }
+    .eq { display: grid; gap: 12px; max-width: 900px; margin: 18px 0; }
+    .eq p { max-width: none; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--brand); padding: 16px 22px; border-radius: var(--r-md); font-family: var(--serif); font-size: 1.2rem; }
+    .eq p + p { margin-top: 0; }
+
+    /* ponte / jornada */
+    .tl { position: relative; margin: 22px 0; padding-left: 34px; max-width: var(--read); }
+    .tl::before { content: ''; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+    .tl .i { position: relative; padding-bottom: 20px; }
+    .tl .i::before { content: ''; position: absolute; left: -31px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--brand); }
+    .tl .i p.lead { color: var(--ink-2); font-size: .98rem; }
+    .tl .i .quote { margin: 6px 0 0; }
+    .jr { max-width: 640px; }
+    .jr .s { position: relative; padding: 16px 22px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--card); font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; }
+    .jr .ar { text-align: center; color: var(--brand); font-size: 1.4rem; line-height: 1.5; }
+    .jr .s.key { background: var(--brand-soft); border-color: var(--brand); font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: -0.01em; padding: 24px 26px; }
+    .jr .s.fin { background: var(--brand); color: #fff; border-color: var(--brand); font-size: clamp(1.8rem, 4.6vw, 2.8rem); font-weight: 600; text-align: center; padding: 28px 26px; }
+
+    .pitch .quote { font-size: 1.25rem; }
+
+    /* decisões */
+    .dq { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px 26px; margin-bottom: 14px; max-width: var(--read); border-left: 4px solid var(--brand); }
+    .dq legend { font-weight: 700; font-size: 1.02rem; padding: 0; margin-bottom: 8px; float: left; width: 100%; line-height: 1.5; }
+    .dq .ref { clear: both; font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--ink-2); margin: 4px 0 14px; max-width: 64ch; }
+    .opts { clear: both; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .opt { position: relative; }
+    .opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer; margin: 0; }
+    .opt label { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 20px 10px 14px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--bg); font-weight: 500; font-size: .98rem; cursor: pointer; transition: border-color .2s, background .2s; }
+    .opt label::before { content: ''; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--ink-2); background: #fff; transition: all .2s; }
+    .opt label:hover { border-color: var(--ok); }
+    .opt input:checked + label { border-color: var(--ok); background: var(--ok-soft); color: var(--ok); font-weight: 700; }
+    .opt input:checked + label::before { border-color: var(--ok); background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 6.8' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+    .opt input:focus-visible + label { outline: 3px solid var(--brand); outline-offset: 3px; }
+
+    /* envio das respostas */
+    .send { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px 26px; margin: 22px 0 18px; max-width: var(--read); display: grid; gap: 8px; }
+    .send h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; }
+    .send-help { color: var(--ink-2); font-size: .95rem; margin-bottom: 6px; }
+    .send-label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-top: 8px; }
+    .send-input { width: 100%; font: 400 1rem var(--sans); color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--r-sm); padding: 12px 14px; min-height: 48px; }
+    textarea.send-input { font-size: .92rem; line-height: 1.55; resize: vertical; }
+    .send-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px; }
+    .btn.solid { background: var(--ok); color: #fff; border-color: var(--ok); font-weight: 700; padding: 10px 20px; }
+    .btn.solid:hover { background: var(--ok); filter: brightness(1.1); }
+    .send-status { font-size: .9rem; color: var(--ink-2); }
+    .send-status.err { color: #9A3B2A; }
+
+    /* resumo */
+    .grid-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; margin-bottom: 26px; }
+    .grid-sum div { background: var(--card); padding: 16px 20px; }
+    .grid-sum small { display: block; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--ink-2); }
+    .grid-sum strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.2rem; line-height: 1.3; margin-top: 2px; }
+    .sum-block { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 26px; margin-bottom: 14px; max-width: 900px; }
+    .sum-block small { display: block; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--brand); margin-bottom: 6px; }
+    .sum-block .sv { font-family: var(--serif); font-size: 1.25rem; line-height: 1.4; }
+    .sum-block.big .sv { font-size: 1.5rem; }
+    .sum-block .rr + .rr { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+    .sum-block .rr .t { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; }
+
+    footer { padding: 36px 0 90px; color: var(--ink-2); font-size: .88rem; }
+    .top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--brand); font-size: 1.2rem; cursor: pointer; box-shadow: 0 6px 20px -8px rgba(30,30,28,.3); opacity: 0; pointer-events: none; transition: opacity .25s; }
+    .top.show { opacity: 1; pointer-events: auto; }
+
+    /* ══════════ RESPONSIVO ══════════ */
+    @media (max-width: 1100px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .m-nav { display: block; position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+      .m-nav summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; min-height: 52px; font-weight: 700; font-size: .9rem; color: var(--brand); }
+      .m-nav summary::-webkit-details-marker { display: none; }
+      .m-nav summary::after { content: '▾'; }
+      .m-nav[open] summary::after { content: '▴'; }
+      .m-nav .toc { max-height: 65vh; overflow-y: auto; padding: 0 20px 16px; }
+      .m-nav .toc li a { font-size: .9rem; padding: 10px 8px; grid-template-columns: 32px 1fr; }
+      .m-nav .tools { padding: 0 20px 16px; margin-top: 0; }
+    }
+    @media (max-width: 860px) {
+      .mech { grid-template-columns: 1fr; }
+      .mech .m:not(:last-child)::after { content: '↓'; right: auto; left: 22px; top: auto; bottom: -19px; }
+    }
+    @media (max-width: 720px) {
+      body { font-size: 16px; }
+      .tk { grid-template-columns: 1fr; gap: 12px; }
+      .vip-split { grid-template-columns: 1fr; }
+      .prices { grid-template-columns: 1fr; }
+      .kv th, .kv td { padding: 11px 14px; }
+      .kv th { width: 44%; }
+      .sec-head { flex-wrap: wrap; gap: 8px 14px; }
+      .sec-head .badge { margin-left: 0; }
+      .cmp thead { display: none; }
+      .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+      .cmp { border: none; background: none; }
+      .cmp tr { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); margin-bottom: 14px; overflow: hidden; }
+      .cmp th, .cmp td { border-bottom: 1px solid var(--line); padding: 14px 18px; }
+      .cmp tr :last-child { border-bottom: none; }
+      .cmp [data-l]::before { content: attr(data-l); display: block; font: 700 .68rem var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--brand); margin-bottom: 4px; }
+      .dq { padding: 20px 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+    /* ══════════ IMPRESSÃO / PDF ══════════ */
+    @page { size: A4; margin: 16mm 15mm; }
+    @media print {
+      html, body { background: #fff; }
+      body { font-size: 10.5pt; line-height: 1.55; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .sidebar, .m-nav, .top, .tools, .btn, .send { display: none !important; }
+      .layout { display: block; }
+      .wrap { max-width: none; padding: 0; }
+      .cover { padding: 8mm 0 8mm; }
+      .cover h1 { font-size: 40pt; }
+      .sec { padding: 9mm 0; }
+      .sec.tint { background: #fff; }
+      .sec-head, .h3, .label { break-after: avoid; page-break-after: avoid; }
+      .callout, .rota, .tk, .band, .vip-split, .prices, .mech .m, .dq, .sum-block, .tl .i, .jr .s, .eq p, .kv, .cmp tr, .quote, .facts, .grid-sum { break-inside: avoid; page-break-inside: avoid; }
+      .mech { grid-template-columns: repeat(2, 1fr); }
+      .mech .m::after { display: none; }
+      .cmp { break-inside: avoid; }
+      .thesis { font-size: 30pt; }
+      footer { padding-bottom: 0; }
+    }
+
+    /* ══════════ v2: lotes, check, tabelas, campos de decisão ══════════ */
+    .ck { display: inline-grid; place-items: center; width: 1.2em; height: 1.2em; margin-left: .55em; border-radius: 50%; background: var(--ok); color: #fff; font: 700 .62em var(--sans); vertical-align: middle; letter-spacing: 0; }
+    .lotes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 900px; margin: 18px 0; }
+    .lote { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px 28px; }
+    .lote .cap { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--brand); }
+    .lote .pr { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4rem); line-height: 1; color: var(--brand); margin: 8px 0 6px; letter-spacing: -0.03em; }
+    .lote .per { font-size: .98rem; color: var(--ink-2); }
+    .lote .tot { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: .95rem; }
+    .lote .tot strong { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--ink); }
+    .vflow { display: grid; justify-items: start; gap: 4px; margin: 18px 0; }
+    .vflow .s { padding: 9px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); font-weight: 500; font-size: .95rem; }
+    .vflow .s.end { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .vflow .a { color: var(--brand); padding-left: 22px; line-height: 1.2; }
+    fieldset.dq { min-width: 0; }
+    .dq .field, .dq .opt-route, .dq > p { clear: both; }
+    .dq .field { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 6px; }
+    .dq .field .send-input, .send .send-input { min-width: 0; max-width: 100%; }
+    .send { grid-template-columns: minmax(0, 1fr); }
+    .dq .field label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); }
+    .dq .opt-route { margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--line); }
+    .dq .opt-route:first-of-type { border-top: none; margin-top: 8px; padding-top: 0; }
+    .dq .opt-route .nm { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+    .dq .opt-route .ref { margin: 6px 0 10px; }
+    .cmp.four th, .cmp.four td { padding: 16px 18px; }
+    .cmp td.n { font-variant-numeric: tabular-nums; }
+    .qlist .quote { margin: 12px 0; }
+    .eq-box { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--brand); border-radius: var(--r-md); padding: 16px 22px; margin: 14px 0; max-width: var(--read); font-family: var(--serif); font-size: 1.15rem; }
+    @media (max-width: 720px) { .lotes { grid-template-columns: 1fr; } }
+    @media print { .lote, .vflow .s, .eq-box { break-inside: avoid; page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar" aria-label="Índice do documento">
+    <div class="mark">Talitha Pereira</div>
+    <div class="mark-sub">Briefing de lançamento<br>Novembro 2026</div>
+    <ol class="toc" id="toc">
+      <li><a href="#s1"><span>01</span><span>INFORMAÇÕES DO LANÇAMENTO</span></a></li>
+      <li><a href="#s2"><span>02</span><span>OBJETIVO DO LANÇAMENTO</span></a></li>
+      <li><a href="#s3"><span>03</span><span>CONTEXTO ESTRATÉGICO</span></a></li>
+      <li><a href="#s4"><span>04</span><span>O QUE A PRÓPRIA AUDIÊNCIA NOS MOSTROU</span></a></li>
+      <li><a href="#s5"><span>05</span><span>POR QUE COMUNICAÇÃO E ORATÓRIA?</span></a></li>
+      <li><a href="#s6"><span>06</span><span>POSICIONAMENTO DO WORKSHOP</span></a></li>
+      <li><a href="#s7"><span>07</span><span>ROTAS DE NOME E PROMESSA — PARA APROVAÇÃO</span></a></li>
+      <li><a href="#s8"><span>08</span><span>COMPARAÇÃO DAS ROTAS</span></a></li>
+      <li><a href="#s9"><span>09</span><span>TRANSFORMAÇÃO DO WORKSHOP ✓</span></a></li>
+      <li><a href="#s10"><span>10</span><span>RESULTADO TANGÍVEL DO DIA ✓</span></a></li>
+      <li><a href="#s11"><span>11</span><span>TESE CENTRAL DO LANÇAMENTO ✓</span></a></li>
+      <li><a href="#s12"><span>12</span><span>BIG IDEA / NARRATIVA CENTRAL</span></a></li>
+      <li><a href="#s13"><span>13</span><span>CRENÇA QUE O WORKSHOP PRECISA CONSTRUIR</span></a></li>
+      <li><a href="#s14"><span>14</span><span>MECANISMO DO WORKSHOP ✓</span></a></li>
+      <li><a href="#s15"><span>15</span><span>INGRESSO ESSENCIAL</span></a></li>
+      <li><a href="#s16"><span>16</span><span>EXPERIÊNCIA VIP ✓</span></a></li>
+      <li><a href="#s17"><span>17</span><span>ESTRUTURA DO EVENTO</span></a></li>
+      <li><a href="#s18"><span>18</span><span>PAPEL DA FORMAÇÃO UNA</span></a></li>
+      <li><a href="#s19"><span>19</span><span>PONTE WORKSHOP → FORMAÇÃO UNA</span></a></li>
+      <li><a href="#s20"><span>20</span><span>CONCEITO DO PITCH</span></a></li>
+      <li><a href="#s21"><span>21</span><span>INFORMAÇÕES DE VENDA — FORMAÇÃO UNA</span></a></li>
+      <li><a href="#s22"><span>22</span><span>PONTOS PARA DECISÃO DA TALITHA</span></a></li>
+      <li><a href="#s23"><span>23</span><span>RESUMO EXECUTIVO</span></a></li>
+      <li><a href="#s24"><span>24</span><span>JORNADA EM UMA ÚNICA LINHA</span></a></li>
+    </ol>
+    <div class="tools">
+      <button class="btn" type="button" data-print>Imprimir / Salvar em PDF</button>
+    </div>
+  </aside>
+
+  <main>
+    <details class="m-nav" id="mnav">
+      <summary>Índice do documento</summary>
+      <ol class="toc" id="toc-m"></ol>
+      <div class="tools"><button class="btn" type="button" data-print>Imprimir / Salvar em PDF</button></div>
+    </details>
+
+    <!-- ══════ CAPA ══════ -->
+    <header class="cover" id="topo">
+      <div class="wrap">
+        <div class="kicker">BRIEFING DE LANÇAMENTO</div>
+        <h1>TALITHA PEREIRA</h1>
+        <div class="month">NOVEMBRO 2026</div>
+        <div class="chips">
+          <span class="chip hl">09 NOV 2026</span>
+          <span class="chip">WORKSHOP AO VIVO</span>
+          <span class="chip">FORMAÇÃO UNA · R$597</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap glance">
+      <h2>Resumo visual inicial</h2>
+      <div class="facts">
+        <div class="fact"><small>Data do Workshop</small><strong>09 de novembro de 2026</strong></div>
+        <div class="fact"><small>Plataforma</small><strong>YouTube</strong></div>
+        <div class="fact"><small>Horário</small><strong>A definir</strong></div>
+        <div class="fact"><small>Replay</small><strong>Não haverá</strong></div>
+        <div class="fact"><small>1º lote</small><strong>R$10</strong></div>
+        <div class="fact"><small>2º lote</small><strong>R$17</strong></div>
+        <div class="fact"><small>Experiência VIP</small><strong>+R$35</strong></div>
+        <div class="fact"><small>Formação UNA (lançamento)</small><strong>R$597</strong></div>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <section class="sec" id="s1">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">01</span><h2>INFORMAÇÕES DO LANÇAMENTO</h2></div>
+        <table class="kv">
+          <tr><th>Especialista</th><td>Talitha Pereira</td></tr>
+          <tr><th>Produto principal</th><td>Formação UNA</td></tr>
+          <tr><th>Modelo</th><td>Lançamento Pago — Workshop Online Ao Vivo</td></tr>
+          <tr><th>Data do Workshop</th><td>09 de novembro de 2026</td></tr>
+          <tr><th>Plataforma</th><td>YouTube</td></tr>
+          <tr><th>Horário</th><td>A definir com Talitha/equipe</td></tr>
+          <tr><th>Replay</th><td>Não haverá replay</td></tr>
+          <tr class="grp"><th colspan="2">Período de captação</th></tr>
+          <tr><th>Captação</th><td>19/10 a 08/11 — 21 dias de captação</td></tr>
+        </table>
+
+        <h3 class="h3" style="margin-top: 34px">Ingressos</h3>
+        <div class="lotes">
+          <div class="lote"><div class="cap">1º lote</div><div class="pr">R$10</div><div class="per">Período: 19/10 a 25/10</div><div class="tot">Total com VIP: <strong>R$45</strong></div></div>
+          <div class="lote"><div class="cap">2º lote</div><div class="pr">R$17</div><div class="per">Período: 26/10 a 08/11</div><div class="tot">Total com VIP: <strong>R$52</strong></div></div>
+        </div>
+        <div class="read">
+          <p>Os dois lotes dão acesso integral ao Workshop.</p>
+          <p>A mudança de preço acontece por prazo real e previamente definido.</p>
+        </div>
+
+        <h3 class="h3" style="margin-top: 34px">Experiência VIP</h3>
+        <table class="kv">
+          <tr><th>Order Bump</th><td>+R$35</td></tr>
+        </table>
+        <div class="read" style="margin-top: 14px"><p>A participante VIP terá, além de todo o Workshop, acesso a um momento adicional e exclusivo em grupo com Talitha Pereira.</p></div>
+
+        <h3 class="h3" style="margin-top: 34px">Produto principal</h3>
+        <table class="kv">
+          <tr><th>Produto principal</th><td>Formação UNA</td></tr>
+          <tr><th>Condição especial durante o lançamento</th><td>R$597</td></tr>
+          <tr><th>Preço posterior no perpétuo</th><td>R$797</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec tint" id="s2">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">02</span><h2>OBJETIVO DO LANÇAMENTO</h2></div>
+        <div class="read">
+          <p>O objetivo deste lançamento é utilizar um Workshop Pago de 1 dia como porta de entrada para mulheres cristãs que desejam desenvolver sua comunicação e oratória.</p>
+          <p>O Workshop precisa gerar uma transformação perceptível durante o próprio evento.</p>
+          <p>A participante não deve terminar o dia apenas com mais conhecimento sobre comunicação.</p>
+          <p>Ela deve perceber, na prática, que consegue:</p>
+          <ul class="list">
+            <li>organizar melhor aquilo que deseja comunicar;</li>
+            <li>estruturar sua mensagem;</li>
+            <li>falar com mais clareza;</li>
+            <li>se expressar com mais segurança;</li>
+            <li>reduzir a dependência do improviso;</li>
+            <li>transmitir mais confiança e autoridade através da sua comunicação.</li>
+          </ul>
+          <p style="margin-top: 1rem">Ao experimentar o desenvolvimento de uma competência específica da sua liderança, ela deve compreender uma ideia maior:</p>
+          <p class="quote"><strong>Se desenvolver minha comunicação já muda a forma como eu ensino, lidero e me posiciono, o que acontece quando eu desenvolvo a líder por inteiro?</strong></p>
+          <p>É nesse ponto que a Formação UNA se torna o próximo passo natural.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec" id="s3">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">03</span><h2>CONTEXTO ESTRATÉGICO</h2></div>
+        <div class="read">
+          <p>A comunicação anterior da Formação UNA explorou fortemente territórios relacionados a:</p>
+          <ul class="list"><li>exaustão;</li><li>sobrecarga;</li><li>feridas emocionais;</li><li>culpa;</li><li>críticas;</li><li>solidão na liderança;</li><li>necessidade de cura.</li></ul>
+          <p style="margin-top: 1rem">Esses territórios continuam fazendo parte da realidade da mulher que a UNA atende.</p>
+          <p>Porém, para este lançamento, a oportunidade é mudar o ponto de entrada.</p>
+          <p>Em vez de começar novamente pela dor, o Workshop começa por um <strong>desejo declarado pela própria audiência</strong>:</p>
+          <p class="quote"><strong>Comunicação e Oratória.</strong></p>
+          <p>A estratégia de novembro parte menos da pergunta:</p>
+          <p class="quote">“O que está machucando essa líder?”</p>
+          <p>E mais da pergunta:</p>
+          <p class="quote"><strong>“Que líder ela deseja se tornar?”</strong></p>
+          <p>Isso permite posicionar o lançamento no território de:</p>
+          <div class="flow"><span class="st">DESENVOLVIMENTO</span><span class="ar">→</span><span class="st">PREPARO</span><span class="ar">→</span><span class="st">COMUNICAÇÃO</span><span class="ar">→</span><span class="st">AUTORIDADE</span><span class="ar">→</span><span class="st end">LIDERANÇA</span></div>
+          <p>A dor continua existindo.</p>
+          <p>Mas ela deixa de ser o principal motor da entrada.</p>
+          <p>O desejo de crescer assume esse papel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec tint" id="s4">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">04</span><h2>O QUE A PRÓPRIA AUDIÊNCIA NOS MOSTROU</h2></div>
+        <div class="read">
+          <p>A escolha por Comunicação e Oratória não nasce apenas de uma hipótese estratégica.</p>
+          <p>Ela encontra respaldo direto nas respostas da própria audiência de Talitha.</p>
+          <h3 class="h3">Pesquisa 1</h3>
+          <p>Pergunta relacionada aos temas que a audiência gostaria de aprender:</p>
+        </div>
+        <table class="cmp four" style="max-width: 820px">
+          <thead><tr><th>Tema</th><th>Respostas</th><th>Percentual</th></tr></thead>
+          <tbody>
+            <tr><th data-l="Tema">Procrastinação e produtividade</th><td class="n" data-l="Respostas">282</td><td class="n" data-l="Percentual">33%</td></tr>
+            <tr><th data-l="Tema">Como estruturar um sermão</th><td class="n" data-l="Respostas">202</td><td class="n" data-l="Percentual">24%</td></tr>
+            <tr><th data-l="Tema">Comunicação e oratória</th><td class="n" data-l="Respostas">199</td><td class="n" data-l="Percentual">23%</td></tr>
+            <tr><th data-l="Tema">Gestão de tempo, demandas e pessoas</th><td class="n" data-l="Respostas">173</td><td class="n" data-l="Percentual">20%</td></tr>
+          </tbody>
+        </table>
+        <div class="read" style="margin-top: 14px"><p>Mesmo nesta primeira pesquisa, Comunicação e Oratória aparece entre os principais interesses.</p>
+          <h3 class="h3">Pesquisa 2</h3>
+          <p>Na pesquisa de maior volume, a pergunta foi:</p>
+          <p class="quote"><strong>“Estou pensando em fazer uma AULA ABERTA na Formação Una, qual tema você mais gostaria de me ouvir ensinar?”</strong></p>
+          <p>Os resultados foram:</p>
+        </div>
+        <table class="cmp four" style="max-width: 820px">
+          <thead><tr><th>Tema</th><th>Respostas aproximadas</th></tr></thead>
+          <tbody>
+            <tr><th data-l="Tema">Comunicação e oratória</th><td class="n" data-l="Respostas aproximadas">+2.100</td></tr>
+            <tr><th data-l="Tema">Procrastinação e produtividade para líderes</th><td class="n" data-l="Respostas aproximadas">+1.200</td></tr>
+            <tr><th data-l="Tema">Gestão de tempo, demandas e pessoas</th><td class="n" data-l="Respostas aproximadas">926</td></tr>
+            <tr><th data-l="Tema">Como estruturar um sermão</th><td class="n" data-l="Respostas aproximadas">466</td></tr>
+            <tr><th data-l="Tema">Como lidar com críticas e expectativas no ministério</th><td class="n" data-l="Respostas aproximadas">371</td></tr>
+          </tbody>
+        </table>
+        <div class="read" style="margin-top: 14px">
+          <p>A diferença é relevante.</p>
+          <p>Quando a própria audiência pôde dizer o que gostaria de aprender com Talitha, <strong>Comunicação e Oratória apareceu como o maior desejo explícito da pesquisa de maior volume.</strong></p>
+          <p>Isso nos dá uma direção importante:</p>
+          <p class="quote"><strong>A mulher pode precisar de cura, gestão, estrutura e desenvolvimento de liderança. Mas uma das coisas que ela conscientemente deseja aprender é como se comunicar melhor.</strong></p>
+          <p>E desejo consciente é uma porta de entrada comercial poderosa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec" id="s5">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">05</span><h2>POR QUE COMUNICAÇÃO E ORATÓRIA?</h2></div>
+        <div class="read">
+          <p>Porque esse tema está exatamente no encontro entre:</p>
+          <p><strong>o que a audiência quer aprender</strong></p>
+          <p>e</p>
+          <p><strong>o que a Formação UNA pode ajudá-la a se tornar.</strong></p>
+          <p style="margin-top: 1.4rem">O Workshop não será apresentado apenas como uma aula sobre “como falar melhor”.</p>
+          <p>Comunicação e oratória serão posicionadas como <strong>competências de liderança</strong>.</p>
+          <p>A mulher que lidera precisa:</p>
+          <ul class="list"><li>organizar suas ideias;</li><li>ensinar;</li><li>conduzir;</li><li>explicar;</li><li>posicionar-se;</li><li>falar em público;</li><li>transmitir confiança;</li><li>prender a atenção;</li><li>fazer sua mensagem ser compreendida;</li><li>conduzir pessoas através daquilo que comunica.</li></ul>
+          <p style="margin-top: 1rem">Por isso, comunicação não é apenas uma habilidade estética.</p>
+          <p>Ela interfere diretamente na forma como a liderança dessa mulher é percebida.</p>
+          <p>Existe uma progressão estratégica:</p>
+          <div class="vflow">
+            <span class="s">COMUNICAÇÃO + ORATÓRIA</span><span class="a">↓</span>
+            <span class="s">CLAREZA E SEGURANÇA</span><span class="a">↓</span>
+            <span class="s">PRESENÇA E CONFIANÇA</span><span class="a">↓</span>
+            <span class="s">AUTORIDADE</span><span class="a">↓</span>
+            <span class="s">RECONHECIMENTO</span><span class="a">↓</span>
+            <span class="s">REFERÊNCIA</span><span class="a">↓</span>
+            <span class="s">DESENVOLVIMENTO DA LÍDER</span><span class="a">↓</span>
+            <span class="s end">FORMAÇÃO UNA</span>
+          </div>
+          <p>A mulher não entra no Workshop porque deseja comprar uma formação completa em liderança.</p>
+          <p>Ela entra porque deseja <strong>falar melhor</strong>.</p>
+          <p>Durante o Workshop, ela percebe que falar melhor exige preparo.</p>
+          <p>E, ao perceber o impacto que desenvolver uma competência provoca em sua liderança, abre-se espaço para uma conclusão maior:</p>
+          <p class="quote"><strong>Comunicação é uma parte da líder que ela pode desenvolver. Não é a única.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec tint" id="s6">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">06</span><h2>POSICIONAMENTO DO WORKSHOP</h2></div>
+        <div class="read">
+          <p>O evento será apresentado como:</p>
+          <div class="callout brand"><p class="serif"><strong>Workshop de Comunicação e Oratória com Talitha Pereira</strong></p></div>
+          <p>Não estamos vendendo uma sequência de aulas.</p>
+          <p>Não estamos vendendo algumas horas assistindo Talitha falar.</p>
+          <p>Não estamos vendendo apenas conteúdo sobre comunicação.</p>
+          <p>Estamos vendendo uma transformação prática:</p>
+          <p class="quote"><strong>A mulher entra com algo que precisa comunicar e termina o Workshop sabendo organizar melhor essa mensagem e comunicá-la com mais clareza, segurança e autoridade.</strong></p>
+          <div class="callout stack" style="margin-top: 22px">
+            <p>Comunicação é a porta de entrada.</p>
+            <p>Oratória torna a transformação visível quando ela fala.</p>
+            <p>Autoridade é uma consequência percebida.</p>
+            <p>Referência é a aspiração maior.</p>
+            <p>E desenvolvimento de liderança é o território que cria a ponte para a Formação UNA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec" id="s7">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">07</span><h2>ROTAS DE NOME E PROMESSA — PARA APROVAÇÃO</h2></div>
+        <div class="read" style="margin-bottom: 26px">
+          <p>As três rotas abaixo partem do mesmo território estratégico, mas enfatizam desejos diferentes.</p>
+          <p>A escolha da Talitha determinará qual território terá maior peso na comunicação da campanha.</p>
+        </div>
+
+        <article class="rota" style="margin-bottom: 22px">
+          <div class="tag">OPÇÃO 1 — FALE PARA SER OUVIDA</div>
+          <div class="name">FALE PARA SER OUVIDA</div>
+          <div class="desc">Workshop de Comunicação e Oratória com Talitha Pereira</div>
+          <p class="quote"><strong>Aprenda, em 1 dia, a falar com clareza, segurança e autoridade para prender a atenção de quem te ouve e fazer sua mensagem ser compreendida, lembrada e respeitada.</strong></p>
+          <div class="label">Força desta rota</div>
+          <p>Parte de um desejo extremamente imediato:</p>
+          <p class="quote"><strong>“Eu quero conseguir falar e ser ouvida.”</strong></p>
+          <p>Mas não termina apenas na fala.</p>
+          <p>A promessa progride para:</p>
+          <p><strong>falar → prender atenção → ser compreendida → ser lembrada → ser respeitada</strong></p>
+          <div class="label">Desejo dominante</div>
+          <p class="quote"><strong>Quero falar melhor e ser ouvida.</strong></p>
+        </article>
+
+        <article class="rota" style="margin-bottom: 22px">
+          <div class="tag">OPÇÃO 2 — FALE COM AUTORIDADE. TORNE-SE REFERÊNCIA.</div>
+          <div class="name">FALE COM AUTORIDADE. TORNE-SE REFERÊNCIA.</div>
+          <div class="desc">Workshop de Comunicação e Oratória com Talitha Pereira</div>
+          <p class="quote"><strong>Em 1 dia, aprenda a organizar suas ideias, falar com mais segurança e comunicar com autoridade — para transmitir confiança, fortalecer sua presença e começar a ser reconhecida pelo valor do que você tem a dizer.</strong></p>
+          <div class="label">Força desta rota</div>
+          <p>Essa rota coloca de maneira mais explícita a aspiração maior da participante.</p>
+          <p>O Workshop não promete transformar alguém em referência em algumas horas.</p>
+          <p>O que ele entrega é o começo concreto dessa construção:</p>
+          <p><strong>organização → segurança → comunicação → autoridade → reconhecimento</strong></p>
+          <p>“Tornar-se referência” funciona como horizonte.</p>
+          <p>O Workshop entrega uma competência.</p>
+          <p>A Formação UNA desenvolve a líder de maneira mais ampla.</p>
+          <div class="label">Desejo dominante</div>
+          <p class="quote"><strong>Quero que minha forma de falar transmita a líder que estou me tornando.</strong></p>
+        </article>
+
+        <article class="rota">
+          <div class="tag">OPÇÃO 3 — DA INSEGURANÇA À AUTORIDADE</div>
+          <div class="name">DA INSEGURANÇA À AUTORIDADE</div>
+          <div class="desc">Workshop de Comunicação e Oratória com Talitha Pereira</div>
+          <p class="quote"><strong>Em 1 dia, aprenda a organizar o que você quer dizer, falar sem depender do improviso e se expressar com mais clareza, presença e segurança — para que sua voz transmita autoridade quando você ensina, lidera ou se posiciona.</strong></p>
+          <div class="label">Força desta rota</div>
+          <p>Essa rota começa no contraste entre o que a mulher sabe que carrega e o que acontece quando ela precisa colocar isso para fora.</p>
+          <p>Ela pode ter conhecimento.</p>
+          <p>Pode ter experiência.</p>
+          <p>Pode ter convicção.</p>
+          <p>Pode ter uma mensagem.</p>
+          <p>Mas, quando precisa falar, pode:</p>
+          <ul class="list"><li>travar;</li><li>perder o raciocínio;</li><li>falar demais;</li><li>não saber como começar;</li><li>depender do improviso;</li><li>não transmitir a segurança que gostaria.</li></ul>
+          <p style="margin-top: 1rem">A transformação acontece quando a forma como ela comunica começa a refletir melhor aquilo que ela já carrega.</p>
+          <div class="label">Desejo dominante</div>
+          <p class="quote"><strong>Quero parar de parecer insegura quando sei que tenho algo importante para dizer.</strong></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec tint" id="s8">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">08</span><h2>COMPARAÇÃO DAS ROTAS</h2></div>
+        <table class="cmp four">
+          <thead><tr><th>Rota</th><th>Desejo Principal</th><th>Território</th><th>Maior Força</th></tr></thead>
+          <tbody>
+            <tr><th data-l="Rota">Fale Para Ser Ouvida</th><td data-l="Desejo Principal">Ser ouvida</td><td data-l="Território">Comunicação + atenção</td><td data-l="Maior Força">Desejo imediato e fácil identificação</td></tr>
+            <tr><th data-l="Rota">Fale com Autoridade. Torne-se Referência.</th><td data-l="Desejo Principal">Construir autoridade e reconhecimento</td><td data-l="Território">Comunicação + liderança</td><td data-l="Maior Força">Conexão direta com a aspiração maior da UNA</td></tr>
+            <tr><th data-l="Rota">Da Insegurança à Autoridade</th><td data-l="Desejo Principal">Falar com segurança</td><td data-l="Território">Oratória + presença</td><td data-l="Maior Força">Contraste forte entre insegurança atual e autoridade desejada</td></tr>
+          </tbody>
+        </table>
+        <div class="read" style="margin-top: 26px">
+          <p>As três rotas permanecem dentro do mesmo posicionamento:</p>
+          <p class="quote"><strong>Comunicação e oratória não são o destino final. São competências que ajudam a mulher a exercer sua liderança com mais clareza, segurança e autoridade.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec" id="s9">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">09</span><h2>TRANSFORMAÇÃO DO WORKSHOP<span class="ck">✓</span></h2></div>
+        <div class="read">
+          <p>A participante chega ao evento com dificuldade de organizar e comunicar aquilo que pensa ou carrega.</p>
+          <p>Durante o dia, Talitha a conduz por um processo de clareza, estrutura e comunicação para que ela transforme uma ideia real em uma mensagem organizada e comunicável.</p>
+          <p>Ao final, ela não terá apenas aprendido conceitos sobre comunicação.</p>
+          <p>Ela terá construído e aplicado sua própria mensagem, entendendo que comunicar com segurança não exige copiar outra pessoa.</p>
+          <p>Exige:</p>
+          <p class="big"><strong>estrutura, preparo e desenvolvimento.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec tint" id="s10">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">10</span><h2>RESULTADO TANGÍVEL DO DIA<span class="ck">✓</span></h2></div>
+        <div class="read">
+          <div class="callout brand"><div class="cap">Resultado tangível</div><p class="serif"><strong>Ela entra com uma ideia, assunto ou mensagem que precisa comunicar e termina o Workshop com essa mensagem organizada, estruturada e pronta para ser comunicada.</strong></p></div>
+          <p>Esse é o resultado que precisa acontecer dentro do Workshop.</p>
+          <p>Autoridade e referência são aspirações maiores.</p>
+          <p>A pequena vitória concreta do evento é fazer a mulher experimentar uma mudança real na forma como estrutura e comunica aquilo que deseja dizer.</p>
+          <p>Ela precisa terminar o Workshop podendo olhar para o que produziu e pensar:</p>
+          <p class="quote"><strong>“Antes eu tinha algo dentro de mim. Agora eu sei como organizar e comunicar isso.”</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="sec" id="s11">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">11</span><h2>TESE CENTRAL DO LANÇAMENTO<span class="ck">✓</span></h2></div>
+        <div class="read">
+          <p class="thesis">CHAMADO<br>NÃO SUBSTITUI<br>PREPARO.</p>
+          <p>Essa é a crença central que sustenta toda a campanha.</p>
+          <p>A mulher pode ter chamado.</p>
+          <p>Pode ter experiência.</p>
+          <p>Pode ter conhecimento.</p>
+          <p>Pode amar servir.</p>
+          <p>Pode ter uma mensagem importante.</p>
+          <p>Mas nada disso elimina a necessidade de desenvolver competências.</p>
+          <p>Preparar-se não diminui o chamado.</p>
+          <p>Desenvolver-se não significa tentar se transformar em outra pessoa.</p>
+          <p>Ao contrário:</p>
+          <p class="quote"><strong>O preparo ajuda a mulher a comunicar, liderar e servir melhor com aquilo que já recebeu.</strong></p>
+          <p>Frase complementar:</p>
+          <p class="quote"><strong>Deus não te chamou para improvisar.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="sec tint" id="s12">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">12</span><h2>BIG IDEA / NARRATIVA CENTRAL</h2></div>
+        <div class="read">
+          <p>Existe uma diferença entre <strong>ter algo para dizer</strong> e <strong>saber comunicar aquilo que você tem para dizer</strong>.</p>
+          <p>Muitas mulheres possuem conhecimento, experiência, convicções, histórias e uma mensagem.</p>
+          <p>Mas, quando precisam colocar isso em palavras, enfrentam dificuldades.</p>
+          <p>Elas sabem o que querem dizer, mas não sabem organizar.</p>
+          <p>Começam a falar e se perdem.</p>
+          <p>Dependem do improviso.</p>
+          <p>Sentem que não conseguem transmitir a mesma segurança que possuem internamente.</p>
+          <p>E, muitas vezes, interpretam isso como:</p>
+          <p class="quote">“Eu não nasci para falar.”</p>
+          <p>Mas comunicação e oratória podem ser desenvolvidas.</p>
+          <p>A mulher não precisa abandonar sua personalidade para falar melhor.</p>
+          <p>Não precisa copiar o jeito de outra líder.</p>
+          <p>Não precisa se tornar artificial.</p>
+          <p>Ela precisa aprender a organizar, estruturar e expressar aquilo que já carrega.</p>
+          <p>Por isso:</p>
+          <div class="callout brand"><div class="cap">Big Idea</div><p class="serif"><strong>Você não precisa se tornar outra mulher para liderar melhor. Precisa desenvolver a mulher que Deus já chamou.</strong></p></div>
+          <p>E o primeiro desenvolvimento que este Workshop tornará visível será sua comunicação.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="sec" id="s13">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">13</span><h2>CRENÇA QUE O WORKSHOP PRECISA CONSTRUIR</h2></div>
+        <div class="read qlist">
+          <p>Ao longo do Workshop, a participante precisa chegar a algumas conclusões:</p>
+          <p class="quote"><strong>“Eu consigo aprender a me comunicar melhor.”</strong></p>
+          <p class="quote"><strong>“Segurança para falar não é apenas talento. Existe preparo.”</strong></p>
+          <p class="quote"><strong>“Minha mensagem fica mais forte quando existe estrutura.”</strong></p>
+          <p class="quote"><strong>“Eu não preciso copiar outra pessoa para transmitir autoridade.”</strong></p>
+          <p class="quote"><strong>“Minha forma de me comunicar interfere na forma como minha liderança é percebida.”</strong></p>
+          <p>E, principalmente:</p>
+          <p class="quote"><strong>“Se eu consigo desenvolver minha comunicação, também consigo desenvolver outras competências da minha liderança.”</strong></p>
+          <p>Essa última crença cria a ponte para a Formação UNA.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="sec tint" id="s14">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">14</span><h2>MECANISMO DO WORKSHOP<span class="ck">✓</span></h2></div>
+        <div class="read">
+          <p>O processo do Workshop será organizado em quatro movimentos:</p>
+          <div class="flow" style="margin-top: 22px"><span class="st">CLAREZA</span><span class="ar">→</span><span class="st">ESTRUTURA</span><span class="ar">→</span><span class="st">EXPRESSÃO</span><span class="ar">→</span><span class="st end">DIREÇÃO</span></div>
+        </div>
+        <div class="mech">
+          <div class="m"><div class="n">01</div><h3>1. CLAREZA</h3><p class="qq"><strong>O que eu realmente quero dizer?</strong></p><p>Antes de comunicar bem, a participante precisa entender qual é a mensagem.</p><p>Qual é a ideia central?</p><p>O que precisa ficar na mente de quem está ouvindo?</p></div>
+          <div class="m"><div class="n">02</div><h3>2. ESTRUTURA</h3><p class="qq"><strong>Como organizo isso para ser compreendida?</strong></p><p>Uma mensagem sem estrutura pode se perder, mesmo quando seu conteúdo é bom.</p><p>Aqui, a participante organiza o raciocínio e constrói uma sequência que faça sentido para quem escuta.</p></div>
+          <div class="m"><div class="n">03</div><h3>3. EXPRESSÃO</h3><p class="qq"><strong>Como comunico com segurança sem deixar de ser eu?</strong></p><p>Não se trata de criar uma personagem.</p><p>Trata-se de desenvolver a capacidade de transmitir aquilo que ela já carrega com mais clareza, presença e segurança.</p></div>
+          <div class="m"><div class="n">04</div><h3>4. DIREÇÃO</h3><p class="qq"><strong>Para onde quero conduzir quem está me ouvindo?</strong></p><p>Uma boa comunicação não termina na fala.</p><p>Ela provoca compreensão, reflexão, decisão ou movimento.</p><p>A participante precisa compreender qual direção deseja produzir através da sua mensagem.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section class="sec" id="s15">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">15</span><h2>INGRESSO ESSENCIAL</h2></div>
+        <div class="read"><p>O ingresso dá acesso a toda a experiência principal do Workshop.</p></div>
+        <div class="lotes">
+          <div class="lote"><div class="cap">1º lote</div><div class="pr">R$10</div><div class="per">19/10 a 25/10</div></div>
+          <div class="lote"><div class="cap">2º lote</div><div class="pr">R$17</div><div class="per">26/10 a 08/11</div></div>
+        </div>
+        <div class="read">
+          <p>O conteúdo principal e a transformação prometida são os mesmos nos dois lotes.</p>
+          <p>A diferença é exclusivamente o momento da compra.</p>
+          <p>Quem toma a decisão antes garante o menor preço.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="sec tint" id="s16">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">16</span><h2>EXPERIÊNCIA VIP<span class="ck">✓</span></h2></div>
+        <div class="read">
+          <h3 class="h3">EXPERIÊNCIA VIP COM TALITHA</h3>
+          <div class="label">Adicional</div>
+          <p class="thesis" style="font-size: clamp(2.4rem, 6vw, 3.6rem); margin-top: 0">+R$35</p>
+          <p>Além de participar de todo o Workshop, a participante VIP terá acesso a um momento exclusivo em grupo com Talitha Pereira.</p>
+          <p>Será um espaço mais próximo para:</p>
+        </div>
+        <div class="vip-split" role="group" aria-label="O que é e o que não é a Experiência VIP">
+          <div class="is"><h3>O QUE É</h3><ul>
+            <li>conversar sobre o que viveu durante o Workshop;</li>
+            <li>aprofundar aprendizados;</li>
+            <li>enviar perguntas;</li>
+            <li>ouvir as dúvidas de outras mulheres;</li>
+            <li>ouvir experiências das demais participantes;</li>
+            <li>participar de uma troca que acontecerá apenas com o grupo VIP.</li>
+          </ul></div>
+          <div class="not"><h3>O QUE NÃO É</h3><ul>
+            <li>mentoria individual;</li>
+            <li>consultoria;</li>
+            <li>análise individual garantida;</li>
+            <li>atendimento particular com Talitha.</li>
+          </ul></div>
+        </div>
+        <div class="read">
+          <div class="label">Posicionamento do VIP</div>
+          <div class="callout brand"><p class="serif"><strong>O Workshop entrega a transformação. O VIP acrescenta proximidade e troca.</strong></p></div>
+          <p>O VIP não será vendido como:</p>
+          <ul class="list"><li>mentoria individual;</li><li>consultoria;</li><li>análise individual garantida;</li><li>atendimento particular com Talitha.</li></ul>
+          <p style="margin-top: 1rem">É uma <strong>experiência coletiva e exclusiva em grupo</strong>.</p>
+          <p><strong>Duração:</strong> A definir.</p>
+        </div>
+        <div class="prices" aria-label="Valores" style="margin-top: 26px">
+          <div><strong>R$10 · R$17</strong><span>Ingresso (1º lote · 2º lote)</span></div>
+          <div><strong>+ R$35</strong><span>VIP</span></div>
+          <div class="tot"><strong>R$45 · R$52</strong><span>Com VIP (1º lote · 2º lote)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 -->
+    <section class="sec" id="s17">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">17</span><h2>ESTRUTURA DO EVENTO</h2></div>
+        <table class="kv">
+          <tr><th>Formato</th><td>Workshop Online Ao Vivo</td></tr>
+          <tr><th>Data</th><td>09/11/2026</td></tr>
+          <tr><th>Plataforma</th><td>YouTube</td></tr>
+          <tr><th>Horário</th><td>A definir</td></tr>
+          <tr><th>Replay</th><td>Não</td></tr>
+        </table>
+        <div class="read" style="margin-top: 22px">
+          <p>O Workshop deve ser construído para gerar progressão.</p>
+          <p>A participante não deve apenas consumir informação.</p>
+          <p>Ela deve avançar durante o próprio evento.</p>
+          <p>A lógica do dia será:</p>
+          <div class="flow"><span class="st">ENTENDER</span><span class="ar">→</span><span class="st">APLICAR</span><span class="ar">→</span><span class="st">CONSTRUIR</span><span class="ar">→</span><span class="st">COMUNICAR</span><span class="ar">→</span><span class="st end">PERCEBER O PRÓXIMO NÍVEL</span></div>
+          <p>O conteúdo deve permitir que ela experimente uma vitória concreta sem tentar condensar toda a Formação UNA em um único dia.</p>
+          <p>A missão do Workshop é desenvolver uma competência específica com profundidade suficiente para gerar resultado.</p>
+          <p>Não entregar “um pouco de tudo”.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18 -->
+    <section class="sec tint" id="s18">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">18</span><h2>PAPEL DA FORMAÇÃO UNA</h2></div>
+        <div class="read">
+          <p>A Formação UNA não entra como “mais conteúdo de comunicação”.</p>
+          <p>Esse posicionamento diminuiria o produto.</p>
+          <p>O Workshop trabalha uma competência específica:</p>
+          <p class="quote"><strong>Comunicação e Oratória.</strong></p>
+          <p>A UNA trabalha o desenvolvimento mais amplo da mulher que lidera.</p>
+          <p>A formação conecta aspectos como:</p>
+          <ul class="list"><li>alinhamento pessoal;</li><li>preparo;</li><li>comunicação;</li><li>estrutura de mensagens;</li><li>liderança;</li><li>gestão;</li><li>organização;</li><li>desenvolvimento de pessoas;</li><li>maturidade;</li><li>construção de uma liderança mais saudável e consistente.</li></ul>
+        </div>
+        <div class="eq" style="margin-top: 20px">
+          <p>O Workshop mostra o impacto de desenvolver <strong>uma competência</strong>.</p>
+          <p>A UNA apresenta a possibilidade de desenvolver <strong>a líder de forma mais completa</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 19 -->
+    <section class="sec" id="s19">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">19</span><h2>PONTE WORKSHOP → FORMAÇÃO UNA</h2></div>
+        <div class="read">
+          <p>A ponte não deve ser:</p>
+          <p class="quote">“Você aprendeu comunicação e agora tenho mais aulas para vender.”</p>
+          <p>A ponte precisa nascer da transformação que ela acabou de experimentar.</p>
+          <p>A lógica é:</p>
+          <p class="quote"><strong>Hoje você desenvolveu uma competência da sua liderança.</strong></p>
+          <p>Ela percebeu que falar com mais segurança não depende apenas de dom.</p>
+          <p>Existe preparo.</p>
+          <p>Existe estrutura.</p>
+          <p>Existe desenvolvimento.</p>
+          <p>Então vem a expansão:</p>
+          <p class="quote"><strong>Mas ninguém se torna uma líder preparada desenvolvendo apenas a comunicação.</strong></p>
+          <p>Uma mulher que deseja liderar com consistência também precisa desenvolver outras competências.</p>
+          <p>Precisa saber estruturar.</p>
+          <p>Precisa saber gerir.</p>
+          <p>Precisa saber formar pessoas.</p>
+          <p>Precisa saber lidar com as próprias pressões.</p>
+          <p>Precisa crescer sem depender permanentemente do improviso.</p>
+          <div class="eq" style="margin-top: 18px">
+            <p>O Workshop abre uma porta.</p>
+            <p>A Formação UNA amplia o caminho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 -->
+    <section class="sec tint" id="s20">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">20</span><h2>CONCEITO DO PITCH</h2></div>
+        <div class="read">
+          <p>O pitch deve partir da vitória que aconteceu durante o próprio Workshop.</p>
+          <p>A participante precisa olhar para o que conseguiu construir e perceber:</p>
+          <p class="quote"><strong>“Eu consegui desenvolver algo que antes parecia apenas uma dificuldade minha.”</strong></p>
+          <p>A partir daí:</p>
+          <p class="quote"><strong>“Agora imagine o que acontece quando você para de desenvolver apenas uma competência isolada e começa a desenvolver a líder como um todo.”</strong></p>
+          <p>A Formação UNA entra como continuação.</p>
+          <p>Não como ruptura.</p>
+          <p>A lógica do pitch é:</p>
+          <div class="vflow">
+            <span class="s">VOCÊ DESENVOLVEU UMA COMPETÊNCIA</span><span class="a">↓</span>
+            <span class="s">PERCEBEU QUE PREPARO MUDA RESULTADO</span><span class="a">↓</span>
+            <span class="s">COMUNICAÇÃO É UMA PARTE DA SUA LIDERANÇA</span><span class="a">↓</span>
+            <span class="s">EXISTEM OUTRAS COMPETÊNCIAS QUE TAMBÉM PODEM SER DESENVOLVIDAS</span><span class="a">↓</span>
+            <span class="s end">A FORMAÇÃO UNA É O PRÓXIMO PASSO</span>
+          </div>
+          <p>Uma crença importante para sustentar essa passagem:</p>
+          <p class="quote"><strong>Referência não é quem fala mais alto. É quem consegue transformar aquilo que sabe em direção para outras pessoas.</strong></p>
+          <p>E referência não é construída apenas com boa comunicação.</p>
+          <p>É construída com preparo, consistência e desenvolvimento.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21 -->
+    <section class="sec" id="s21">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">21</span><h2>INFORMAÇÕES DE VENDA — FORMAÇÃO UNA</h2></div>
+        <table class="kv">
+          <tr><th>Produto</th><td>Formação UNA</td></tr>
+          <tr><th>Preço especial durante este lançamento</th><td>R$597</td></tr>
+          <tr><th>Preço posterior no perpétuo</th><td>R$797</td></tr>
+        </table>
+        <div class="read" style="margin-top: 22px">
+          <p>A diferença de condição deve estar vinculada de maneira clara ao lançamento.</p>
+          <p>A UNA deve ser apresentada como uma formação mais ampla para mulheres que desejam crescer em sua liderança sem permanecer dependentes apenas de tentativa, erro e improviso.</p>
+          <p>O Workshop não substitui a Formação UNA.</p>
+          <p>Ele demonstra, na prática, o poder de desenvolver uma competência.</p>
+          <p>A Formação UNA amplia essa transformação.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 -->
+    <section class="sec tint" id="s22">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">22</span><h2>PONTOS PARA DECISÃO DA TALITHA</h2></div>
+        <form id="decisoes" onsubmit="return false">
+
+          <fieldset class="dq">
+            <legend>1. Nome e promessa do Workshop</legend>
+
+            <div class="opt-route">
+              <div class="nm">Opção 1 — FALE PARA SER OUVIDA</div>
+              <p class="ref">Aprenda, em 1 dia, a falar com clareza, segurança e autoridade para prender a atenção de quem te ouve e fazer sua mensagem ser compreendida, lembrada e respeitada.</p>
+              <div class="opts">
+                <div class="opt"><input type="radio" id="r1a" name="r1" value="Aprovar"><label for="r1a">Aprovar</label></div>
+                <div class="opt"><input type="radio" id="r1b" name="r1" value="Refinar"><label for="r1b">Refinar</label></div>
+                <div class="opt"><input type="radio" id="r1c" name="r1" value="Descartar"><label for="r1c">Descartar</label></div>
+              </div>
+            </div>
+
+            <div class="opt-route">
+              <div class="nm">Opção 2 — FALE COM AUTORIDADE. TORNE-SE REFERÊNCIA.</div>
+              <p class="ref">Em 1 dia, aprenda a organizar suas ideias, falar com mais segurança e comunicar com autoridade — para transmitir confiança, fortalecer sua presença e começar a ser reconhecida pelo valor do que você tem a dizer.</p>
+              <div class="opts">
+                <div class="opt"><input type="radio" id="r2a" name="r2" value="Aprovar"><label for="r2a">Aprovar</label></div>
+                <div class="opt"><input type="radio" id="r2b" name="r2" value="Refinar"><label for="r2b">Refinar</label></div>
+                <div class="opt"><input type="radio" id="r2c" name="r2" value="Descartar"><label for="r2c">Descartar</label></div>
+              </div>
+            </div>
+
+            <div class="opt-route">
+              <div class="nm">Opção 3 — DA INSEGURANÇA À AUTORIDADE</div>
+              <p class="ref">Em 1 dia, aprenda a organizar o que você quer dizer, falar sem depender do improviso e se expressar com mais clareza, presença e segurança — para que sua voz transmita autoridade quando você ensina, lidera ou se posiciona.</p>
+              <div class="opts">
+                <div class="opt"><input type="radio" id="r3a" name="r3" value="Aprovar"><label for="r3a">Aprovar</label></div>
+                <div class="opt"><input type="radio" id="r3b" name="r3" value="Refinar"><label for="r3b">Refinar</label></div>
+                <div class="opt"><input type="radio" id="r3c" name="r3" value="Descartar"><label for="r3c">Descartar</label></div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="dq">
+            <legend>2. Horário do Workshop</legend>
+            <div class="field">
+              <label for="horario">Horário sugerido/definido</label>
+              <input class="send-input" id="horario" name="horario" type="text" placeholder="Ex.: 20h">
+            </div>
+          </fieldset>
+
+          <fieldset class="dq">
+            <legend>3. Experiência VIP</legend>
+            <p class="ref">Conceito: Momento exclusivo em grupo com Talitha para troca, perguntas e aprofundamento sobre a experiência vivida durante o Workshop.</p>
+            <p style="margin: 6px 0"><strong>Valor adicional:</strong> +R$35</p>
+            <p style="margin: 6px 0"><strong>Conceito:</strong> ✓</p>
+            <div class="field">
+              <label for="duracao">Definir duração</label>
+              <input class="send-input" id="duracao" name="duracao" type="text" placeholder="Ex.: 1 hora">
+            </div>
+          </fieldset>
+
+          <fieldset class="dq">
+            <legend>4. Observações gerais da Talitha</legend>
+            <div class="field">
+              <label for="obs">Observações</label>
+              <textarea class="send-input" id="obs" name="obs" rows="4" placeholder="Escreva aqui"></textarea>
+            </div>
+          </fieldset>
+
+          <div class="send" id="envio">
+            <h3>Enviar as respostas para o grupo</h3>
+            <p class="send-help">Marque as opções acima, escreva seu nome e toque em enviar. O WhatsApp abre com a mensagem pronta, e você escolhe o grupo.</p>
+            <label class="send-label" for="nome">Seu nome</label>
+            <input class="send-input" id="nome" name="nome" type="text" autocomplete="name" placeholder="Quem está respondendo">
+            <label class="send-label" for="previa">Mensagem que será enviada</label>
+            <textarea class="send-input" id="previa" rows="11" readonly></textarea>
+            <div class="send-actions">
+              <button type="button" class="btn solid" id="enviar-wa">Enviar no WhatsApp</button>
+              <button type="button" class="btn" id="copiar">Copiar mensagem</button>
+              <span class="send-status" id="send-status" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <button type="button" class="btn" id="limpar" style="margin-top: 6px">Limpar seleções</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 23 -->
+    <section class="sec" id="s23">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">23</span><h2>RESUMO EXECUTIVO</h2></div>
+
+        <div class="grid-sum">
+          <div><small>Evento</small><strong>Workshop Online Ao Vivo de Comunicação e Oratória com Talitha Pereira.</strong></div>
+          <div><small>Data</small><strong>09/11/2026.</strong></div>
+          <div><small>Captação</small><strong>19/10 a 08/11.</strong></div>
+          <div><small>Ingresso</small><strong>1º lote: R$10<br>2º lote: R$17</strong></div>
+          <div><small>VIP</small><strong>+R$35<br>Momento exclusivo em grupo com Talitha.</strong></div>
+          <div><small>Produto principal</small><strong>Formação UNA.</strong></div>
+          <div><small>Preço no lançamento</small><strong>R$597</strong></div>
+          <div><small>Preço posterior no perpétuo</small><strong>R$797</strong></div>
+        </div>
+
+        <div class="sum-block"><small>Desejo de entrada</small><div class="sv">Comunicar-se e falar melhor.</div></div>
+        <div class="sum-block big"><small>Transformação do Workshop ✓</small><div class="sv">Transformar uma ideia, assunto ou mensagem em algo organizado, estruturado e pronto para ser comunicado com mais clareza e segurança.</div></div>
+        <div class="sum-block"><small>Mecanismo ✓</small><div class="sv"><strong>CLAREZA → ESTRUTURA → EXPRESSÃO → DIREÇÃO</strong></div></div>
+        <div class="sum-block big"><small>Tese ✓</small><div class="sv"><strong>Chamado não substitui preparo.</strong></div></div>
+        <div class="sum-block"><small>Narrativa</small><div class="sv">A mulher não precisa se transformar em outra pessoa para comunicar e liderar melhor.<br><br>Ela precisa desenvolver competências que permitam expressar com mais clareza e segurança aquilo que já carrega.</div></div>
+        <div class="sum-block"><small>Aspiração</small><div class="sv"><strong>Ser ouvida → transmitir confiança → comunicar com autoridade → construir reconhecimento → tornar-se referência.</strong></div></div>
+        <div class="sum-block"><small>Ponte para UNA</small><div class="sv">O Workshop demonstra o poder de desenvolver uma competência.<br>A Formação UNA desenvolve a líder de maneira mais ampla.</div></div>
+      </div>
+    </section>
+
+    <!-- 24 -->
+    <section class="sec tint" id="s24">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-num">24</span><h2>JORNADA EM UMA ÚNICA LINHA</h2></div>
+        <div class="vflow jr2">
+          <span class="s">Ela entra porque quer falar melhor</span><span class="a">→</span>
+          <span class="s">aprende a organizar e comunicar sua mensagem</span><span class="a">→</span>
+          <span class="s">experimenta mais clareza, presença e segurança</span><span class="a">→</span>
+          <span class="s">percebe que comunicação desenvolvida aumenta sua autoridade</span><span class="a">→</span>
+          <span class="s">entende que referência exige mais do que falar bem</span><span class="a">→</span>
+          <span class="s">descobre que outras competências da sua liderança também podem ser desenvolvidas</span><span class="a">→</span>
+          <span class="s end">encontra na Formação UNA o próximo passo para desenvolver a líder que Deus já chamou.</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">Briefing de Lançamento · Talitha Pereira — Novembro 2026</div>
+    </footer>
+  </main>
+</div>
+
+<button class="top" id="top" type="button" aria-label="Voltar ao topo">↑</button>
+
+<script>
+  // Índice compacto
+  var toc = document.getElementById('toc');
+  var tocM = document.getElementById('toc-m');
+  tocM.innerHTML = toc.innerHTML;
+  var mnav = document.getElementById('mnav');
+  tocM.addEventListener('click', function (e) { if (e.target.closest('a')) mnav.removeAttribute('open'); });
+
+  // Seção atual
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.sec'));
+  function spy() {
+    var y = window.scrollY + 140, cur = null;
+    secs.forEach(function (s) { if (s.offsetTop <= y) cur = s.id; });
+    links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+    document.getElementById('top').classList.toggle('show', window.scrollY > 700);
+  }
+  window.addEventListener('scroll', spy, { passive: true }); spy();
+
+  // Imprimir / Voltar ao topo
+  document.querySelectorAll('[data-print]').forEach(function (b) { b.addEventListener('click', function () { window.print(); }); });
+  document.getElementById('top').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  // Decisões: persistência local
+  var KEY = 'briefing-lancamento-decisoes-v2';
+  var form = document.getElementById('decisoes');
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  function guardar() { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} }
+
+  form.querySelectorAll('input[type=radio]').forEach(function (r) {
+    if (saved[r.name] === r.value) r.checked = true;
+    r.addEventListener('change', function () { saved[r.name] = r.value; guardar(); });
+  });
+  var campos = ['horario', 'duracao', 'obs', 'nome'];
+  campos.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (saved[id]) el.value = saved[id];
+    el.addEventListener('input', function () { saved[id] = el.value; guardar(); atualizar(); });
+  });
+
+  // Mensagem para o grupo do WhatsApp
+  var previa = document.getElementById('previa');
+  var nome = document.getElementById('nome');
+  var statusEl = document.getElementById('send-status');
+  function pick(name) {
+    var r = form.querySelector('input[name=' + name + ']:checked');
+    return r ? r.value : 'sem resposta';
+  }
+  function val(id) { var v = document.getElementById(id).value.trim(); return v || 'não informado'; }
+  function montarMensagem() {
+    var quem = nome.value.trim() || '(nome não informado)';
+    return [
+      'Briefing de Lançamento · Talitha Pereira — Novembro 2026',
+      'Respostas de ' + quem,
+      '',
+      '1. Nome e promessa do Workshop',
+      'Opção 1 — FALE PARA SER OUVIDA: ' + pick('r1'),
+      'Opção 2 — FALE COM AUTORIDADE. TORNE-SE REFERÊNCIA.: ' + pick('r2'),
+      'Opção 3 — DA INSEGURANÇA À AUTORIDADE: ' + pick('r3'),
+      '',
+      '2. Horário do Workshop: ' + val('horario'),
+      '3. Experiência VIP — duração: ' + val('duracao'),
+      '4. Observações gerais: ' + val('obs'),
+      '',
+      'Página: ' + location.href.split('#')[0]
+    ].join('\n');
+  }
+  function atualizar() { previa.value = montarMensagem(); }
+  function aviso(txt, erro) { statusEl.textContent = txt; statusEl.className = 'send-status' + (erro ? ' err' : ''); }
+  form.addEventListener('change', atualizar);
+  atualizar();
+
+  document.getElementById('enviar-wa').addEventListener('click', function () {
+    if (!nome.value.trim()) { aviso('Escreva seu nome antes de enviar.', true); nome.focus(); return; }
+    aviso('');
+    window.open('https://wa.me/?text=' + encodeURIComponent(montarMensagem()), '_blank');
+  });
+  document.getElementById('copiar').addEventListener('click', function () {
+    if (!nome.value.trim()) { aviso('Escreva seu nome antes de copiar.', true); nome.focus(); return; }
+    var txt = montarMensagem();
+    function fallback() { previa.select(); aviso('Selecionei a mensagem. Copie e cole no grupo.'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { aviso('Mensagem copiada. Cole no grupo.'); }, fallback);
+    } else { fallback(); }
+  });
+
+  document.getElementById('limpar').addEventListener('click', function () {
+    form.querySelectorAll('input[type=radio]').forEach(function (r) { r.checked = false; });
+    ['horario', 'duracao', 'obs'].forEach(function (id) { document.getElementById(id).value = ''; });
+    var n = saved.nome; saved = {}; if (n) saved.nome = n; guardar();
+    atualizar();
+  });
+</script>
+</body>
+</html>
